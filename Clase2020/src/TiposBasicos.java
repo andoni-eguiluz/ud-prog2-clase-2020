@@ -1,7 +1,7 @@
 
 public class TiposBasicos {
 	public static void main(String[] args) {
-		tipos();
+		tiposPrimitivos();
 		tiposNoPrimitivos();
 	}
 	
@@ -12,7 +12,7 @@ public class TiposBasicos {
 		System.out.println( "Entero concatenado: " + i );  // Conversión implícita de i a String
 	}
 	
-	static void tipos() {
+	static void tiposPrimitivos() {
 		byte b = 5;  // 1 byte = 8 bits -128 a 127
 		short s = 5; // 16 bits  -32768 a 32767
 		int i = 5; // 32 bits
