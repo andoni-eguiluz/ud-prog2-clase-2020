@@ -16,11 +16,11 @@ public class TiposBasicosVsClases {
 	private static void pruebaParams() {
 		int i = 5;
 		pasoEntero(i);
-		System.out.println( i );
+		System.out.println( i ); // Qué pasa aquí con i, cambia?
 		Date fecha = new Date(); // Coge la fecha actual, hora de ahora
 		System.out.println( fecha );
 		pasoFecha( fecha );
-		System.out.println( fecha );
+		System.out.println( fecha ); // Y qué pasa aquí con fecha, cambia? 
 	}
 	
 	private static void pasoFecha( Date miFecha ) {
