@@ -1,4 +1,3 @@
-
 public class TiposBasicos {
 	public static void main(String[] args) {
 		tiposPrimitivos();
