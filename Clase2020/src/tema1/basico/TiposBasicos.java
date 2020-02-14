@@ -1,3 +1,4 @@
+package tema1.basico;
 public class TiposBasicos {
 	public static void main(String[] args) {
 		tiposPrimitivos();
