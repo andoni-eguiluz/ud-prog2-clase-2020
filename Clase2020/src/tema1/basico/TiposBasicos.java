@@ -1,4 +1,8 @@
 package tema1.basico;
+
+/** Clase de ejemplo para revisar los tipos básicos de datos en Java
+ * @author andoni.eguiluz at ingenieria.deusto.es
+ */
 public class TiposBasicos {
 	public static void main(String[] args) {
 		tiposPrimitivos();
@@ -33,6 +37,7 @@ public class TiposBasicos {
 		// Trabajo con tipos primitivos
 		int i2 = 3;
 		System.out.println( i + i2 );
+		// Conversiones
 		double d2 = d * f;  // Conversión implícita de float a double
 		float f3 = (float) d * f;  // Conversión explícita (no se puede implícita de double a float)
 		int d4 = (int) (i * d);  // Operación truncada

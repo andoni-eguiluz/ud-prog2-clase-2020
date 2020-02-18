@@ -4,6 +4,10 @@ import java.util.Date;
 
 // Esta clase realmente se llama
 // tema1.basico.TiposBasicosVsClases
+// (nombre de paquete.nombre de clase)
+/** Clase de ejemplo de tipos primitivos y objetos, y paso de parámetros
+ * @author andoni.eguiluz at ingenieria.deusto.es
+ */
 public class TiposBasicosVsClases {
 	
 	public static int i;  // Variable accesible en todos los métodos
@@ -14,6 +18,7 @@ public class TiposBasicosVsClases {
 	}
 	
 	private static void pruebaParams() {
+		// En java los parámetros siempre se pasan por valor...
 		int i = 5;
 		pasoEntero(i);
 		System.out.println( i ); // Qué pasa aquí con i, cambia?
@@ -21,6 +26,7 @@ public class TiposBasicosVsClases {
 		System.out.println( fecha );
 		pasoFecha( fecha );
 		System.out.println( fecha ); // Y qué pasa aquí con fecha, cambia? 
+		// ...en los tipos primitivos se copia el dato, en los objetos se copia la referencia
 	}
 	
 	private static void pasoFecha( Date miFecha ) {
