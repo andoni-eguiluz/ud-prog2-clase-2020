@@ -1,4 +1,4 @@
-package tema1;
+package tema1.basico;
 
 /** Ejemplos de método format de números en strings
  * @author andoni.eguiluz @ ingenieria.deusto.es
