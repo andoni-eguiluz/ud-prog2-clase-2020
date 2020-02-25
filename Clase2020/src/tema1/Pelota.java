@@ -62,9 +62,14 @@ public class Pelota {
 	
 	public void dibuja( VentanaGrafica v ) {
 		// Log de dibujo de pelota en consola
-		System.out.println( "Dibuja en " + x + "," + y + " - radio " + radio + " - color " + color );
+		System.out.println( "Dibuja " + this );
 		// Dibujo en ventana
 		v.dibujaCirculo( x, y, radio, 2.0f, color);
+	}
+	
+	@Override
+	public String toString() {
+		return "(" + x + "," + y + ") R" + radio + " C<" + color.getRed()+","+color.getGreen()+","+color.getBlue()+">";
 	}
 	
 }

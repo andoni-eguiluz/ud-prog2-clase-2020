@@ -13,8 +13,16 @@ public class PruebaVentana {
 		miPelota.setY( 200.0 );
 		miPelota.setColor( Color.BLUE );
 		miPelota.setRadio( 40 );
-		miPelota.dibuja( v );
-		
+		GrupoPelotas g = new GrupoPelotas( 10 );
+		g.anyadePelota( miPelota );
+		Pelota miPelota2 = new Pelota();
+		miPelota2.setX( 400.0 );
+		miPelota2.setY( 350.0 );
+		miPelota2.setColor( Color.GREEN );
+		miPelota2.setRadio( 50 );
+		g.anyadePelota( miPelota2 );
+		System.out.println( "Grupo de pelotas: " + g );
+		g.dibuja( v );
 	}
 
 }
