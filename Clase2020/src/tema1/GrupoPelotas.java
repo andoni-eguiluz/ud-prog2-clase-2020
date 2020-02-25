@@ -15,6 +15,13 @@ public class GrupoPelotas {
 		numPelotas = 0;
 	}
 	
+	/** Devuelve el número de las pelotas actualmente en el grupo
+	 * @return	Número de pelotas (entre 0 y núm máximo)
+	 */
+	public int getNumPelotas() {
+		return numPelotas;
+	}
+	
 	/** Añade una pelota al grupo
 	 * @param pelota	Nueva pelota a añadir
 	 * @return	true si el añadido es correcto, false si no cabe (el grupo está lleno)
