@@ -26,7 +26,7 @@ public class PruebaVentana {
 		g.anyadePelota( miPelota2 );
 		System.out.println( "Grupo de pelotas: " + g );
 		g.dibuja( v );
-		v.getJFrame().setLocation( 2000, 0 ); // NOOOOO
+		v.getJFrame().setLocation( 2000, 0 ); // Esta línea no hace falta (es para mi doble pantalla)
 		miPelota.mover50ADerecha( v );
 	}
 
