@@ -1,0 +1,114 @@
+package tema1.ver2;
+
+import tema1.VentanaGrafica;
+
+/** Clase que permite crear un grupo variable de pelotas y dibujarlo en pantalla
+ * @author andoni.eguiluz at ingenieria.deusto.es
+ */
+public class GrupoPelotas {
+	private Pelota[] pelotas = null;  // Array de pelotas
+	private int numPelotas = 0;    // Número actual de pelotas
+	
+	/** Crea un grupo de pelotas
+	 * @param numMax	Número máximo de pelotas que tendrá ese grupo
+	 */
+	public GrupoPelotas( int numMax ) {
+		pelotas = new Pelota[numMax];
+		numPelotas = 0;
+	}
+
+	/** Crea un grupo de pelotas de tamaño 10
+	 */
+	public GrupoPelotas() {
+		pelotas = new Pelota[10];
+	}
+	
+	/** Devuelve el número de las pelotas actualmente en el grupo
+	 * @return	Número de pelotas (entre 0 y núm máximo)
+	 */
+	public int getNumPelotas() {
+		return numPelotas;
+	}
+	
+	/** Añade una pelota al grupo
+	 * @param pelota	Nueva pelota a añadir
+	 * @return	true si el añadido es correcto, false si no cabe (el grupo está lleno)
+	 */
+	public boolean anyadePelota( Pelota pelota ) {
+		if (numPelotas==pelotas.length) {
+			return false;
+		}
+		pelotas[numPelotas] = pelota;
+		numPelotas++;
+		return true;
+	}
+	
+	/** Borra una pelota del grupo
+	 * @param numPelota	Índice de la pelota a borrar. Debe estar en el rango 0 a (n-1) siendo n el número de pelotas existentes.
+	 */
+	public void borraPelota( int numPelota ) {
+		// Al borrar una pelota se desplazan las siguientes
+		// Por ejemplo si borramos p
+		// [ 0 | 1 | ... | p |p+1|p+2| ... | n-1 | ... ]
+		// Quedarán
+		// [ 0 | 1 | ... |p+1|p+2| ... | n-1 | ...     ]
+		for (int i=numPelota+1; i<numPelotas; i++) {
+			pelotas[i-1] = pelotas[i];
+		}
+		numPelotas--;
+	}
+	
+	/** Devuelve una pelota del grupo
+	 * @param numPelota	Índice de la pelota, de 0 a n-1
+	 * @return	Pelota correspondiente (la devuelve pero no la quita del grupo)
+	 */
+	public Pelota getPelota( int numPelota ) {
+		return pelotas[numPelota];
+	}
+	
+	/** Busca una pelota en el grupo
+	 * @param pelota	Pelota a buscar
+	 * @return	Posición donde está la pelota, -1 si no se encuentra
+	 */
+	public int buscaPelota( Pelota pelota ) {
+		for (int i=0; i<pelotas.length; i++) {
+			if (pelota==pelotas[i]) return i;
+		}
+		return -1;
+	}
+	
+	/** Dibuja todas las pelotas del grupo
+	 * @param v	Ventana en la que dibujar
+	 */
+	public void dibuja( VentanaGrafica v ) {
+		// for :
+		// podría hacer otras cosas
+		// for (int i=0; i<numPelotas; i = i + 2)
+		for (int i=0; i<numPelotas; i++) {
+			pelotas[i].dibuja( v );
+		}
+	}
+
+	// Devuelve el grupo de pelotas en formato [pelota1|pelota2|...]  (solo devuelve el grupo con el tamaño que tenga)
+	@Override
+	public String toString() {
+		String ret = "[";
+		for (int i=0; i<numPelotas; i++) {
+			ret += pelotas[i];
+			if (i<numPelotas-1) ret += "|";
+		}
+		return ret + "]";
+	}
+	
+	/* Posible prueba de clase
+	public static void main(String[] args) {
+		GrupoPelotas g = new GrupoPelotas(2);
+		System.out.println( g.anyadePelota( new Pelota() ) );
+		System.out.println( g.anyadePelota( new Pelota() ) );
+		System.out.println( g.anyadePelota( new Pelota() ) );
+		System.out.println( g );
+		g.borraPelota(1);
+		System.out.println( g );
+	}
+	*/
+}

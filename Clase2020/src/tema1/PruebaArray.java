@@ -15,5 +15,20 @@ public class PruebaArray {
 		v[5] = p;
 		p.setColor( Color.red );
 		System.out.println( v[5] );
+		// Duda de retorno
+		System.out.println( devuelvoAlgo( 7 ));
+	}
+	
+	// Ejemplo de devolución
+	private static int devuelvoAlgo( int h ) {
+		int calc = 0;
+		// ...
+		if (h%2==0) {
+			return 0;
+		} else {
+			return 1;
+		}
+//		return 7 * calc + h;
+		// int j = 5;  // Nada después del return
 	}
 }
