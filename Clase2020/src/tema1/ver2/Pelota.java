@@ -76,6 +76,9 @@ public class Pelota {
 		this.color = color;
 	}
 	
+	/** Dibuja la pelota
+	 * @param v	Ventana en la que dibujar
+	 */
 	public void dibuja( VentanaGrafica v ) {
 		// Log de dibujo de pelota en consola
 		System.out.println( "Dibuja " + this );
@@ -84,6 +87,7 @@ public class Pelota {
 	}
 	
 	/** Mueve la pelota 50 píxels a la derecha y dibuja el movimiento
+	 * @param v	Ventana en la que dibujar
 	 */
 	public void mover50ADerecha( VentanaGrafica v ) {
 		this.borra( v );
@@ -96,6 +100,9 @@ public class Pelota {
 		this.dibuja( v );
 	}
 	
+	/** Borra la pelota (dibujándola en blanco)
+	 * @param v	Ventana en la que borrar
+	 */
 	public void borra( VentanaGrafica v ) {
 		v.dibujaCirculo( x, y, radio, 2.0f, Color.WHITE );
 	}
