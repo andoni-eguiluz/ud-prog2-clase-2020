@@ -101,10 +101,15 @@ public class Pelota {
 		this.dibuja( v );
 	}
 	
+	/** Mueve la pelota y dibuja el movimiento (borrando la posición anterior y dibujando la nueva)
+	 * @param v	Ventana en la que dibujar
+	 * @param incX	Incremento a aplicar en la coordenada x
+	 * @param incY	Incremento a aplicar en la coordenada y
+	 */
 	public void moverYDibujar( VentanaGrafica v, int incX, int incY ) {
 		borra( v );
-		x += incX;  // x = x + incX;
-		y += incY;  // y = y + incY;
+		x += incX;  // x = x + incX;  (derecha positivo, izquierda negativo)
+		y += incY;  // y = y + incY;  (abajo positivo, arriba negativo)
 		dibuja( v );
 	}
 	

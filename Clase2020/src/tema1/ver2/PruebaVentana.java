@@ -29,9 +29,12 @@ public class PruebaVentana {
 		System.out.println( "Grupo de pelotas: " + g );
 		g.dibuja( v );
 		v.getJFrame().setLocation( 2000, 0 ); // Esta línea no hace falta (es para mi doble pantalla)
-//		miPelota.mover50ADerecha( v );
-//		miPelota2.mover50ADerecha( v );
-//		moverEnParalelo( v, miPelota, miPelota2 );
+		// Movimiento independiente de cada pelota
+		// (Descomentar las líneas si se quiere probar)
+		// miPelota.mover50ADerecha( v );
+		// miPelota2.mover50ADerecha( v );
+		// Movimiento en paralelot de las dos pelotas
+		// moverEnParalelo( v, miPelota, miPelota2 );
 		moverConRaton( v, miPelota );
 	}
 	
