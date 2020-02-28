@@ -1,6 +1,8 @@
 package tema1.ver2;
 
 import java.awt.Color;
+import java.awt.Point;
+
 import tema1.VentanaGrafica;
 
 public class PruebaVentana {
@@ -27,7 +29,31 @@ public class PruebaVentana {
 		System.out.println( "Grupo de pelotas: " + g );
 		g.dibuja( v );
 		v.getJFrame().setLocation( 2000, 0 ); // Esta línea no hace falta (es para mi doble pantalla)
-		miPelota.mover50ADerecha( v );
+//		miPelota.mover50ADerecha( v );
+//		miPelota2.mover50ADerecha( v );
+//		moverEnParalelo( v, miPelota, miPelota2 );
+		moverConRaton( v, miPelota );
+	}
+	
+	private static void moverEnParalelo( VentanaGrafica v, Pelota p1, Pelota p2 ) {
+		for (int inc=0; inc<50; inc++) {
+			p1.moverYDibujar( v, -1, 0 );
+			p2.moverYDibujar( v, -1, 0 );
+			v.espera( 40 );   // 2000 milisegundos / 50 movimientos
+		}
+	}
+	
+	private static void moverConRaton( VentanaGrafica v, Pelota p ) {
+		while (!v.estaCerrada()) {
+			java.awt.Point punto = v.getRatonPulsado();
+			if (punto!=null) {
+				p.borra( v );
+				p.setX( punto.x );
+				p.setY( punto.y );
+				p.dibuja( v );
+			}
+			v.espera( 20 );
+		}
 	}
 
 }

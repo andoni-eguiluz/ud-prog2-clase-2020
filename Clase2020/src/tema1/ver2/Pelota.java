@@ -87,6 +87,7 @@ public class Pelota {
 	}
 	
 	/** Mueve la pelota 50 píxels a la derecha y dibuja el movimiento
+	 * EL MOVIMIENTO OCUPA 2 SEGUNDOS
 	 * @param v	Ventana en la que dibujar
 	 */
 	public void mover50ADerecha( VentanaGrafica v ) {
@@ -99,6 +100,14 @@ public class Pelota {
 		}
 		this.dibuja( v );
 	}
+	
+	public void moverYDibujar( VentanaGrafica v, int incX, int incY ) {
+		borra( v );
+		x += incX;  // x = x + incX;
+		y += incY;  // y = y + incY;
+		dibuja( v );
+	}
+	
 	
 	/** Borra la pelota (dibujándola en blanco)
 	 * @param v	Ventana en la que borrar
