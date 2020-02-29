@@ -106,7 +106,7 @@ public class Pelota {
 	 * @param incX	Incremento a aplicar en la coordenada x
 	 * @param incY	Incremento a aplicar en la coordenada y
 	 */
-	public void moverYDibujar( VentanaGrafica v, int incX, int incY ) {
+	public void moverYDibujar( VentanaGrafica v, double incX, double incY ) {
 		borra( v );
 		x += incX;  // x = x + incX;  (derecha positivo, izquierda negativo)
 		y += incY;  // y = y + incY;  (abajo positivo, arriba negativo)
