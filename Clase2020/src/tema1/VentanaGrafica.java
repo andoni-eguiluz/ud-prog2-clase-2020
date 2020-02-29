@@ -263,6 +263,23 @@ public class VentanaGrafica {
 	 * @param radio	Radio del círculo (en píxels) 
 	 * @param grosor	Grueso del círculo (en píxels)
 	 * @param color  	Color del círculo
+	 * @param colorRelleno  	Color de relleno del círculo
+	 */
+	public void dibujaCirculo( double x, double y, double radio, float grosor, Color color, Color colorRelleno ) {
+		graphics.setStroke( new BasicStroke( grosor ));
+		graphics.setColor( colorRelleno );
+		graphics.fillOval( (int)Math.round(x-radio), (int)Math.round(y-radio), (int)Math.round(radio*2), (int)Math.round(radio*2) );
+		graphics.setColor( color );
+		graphics.drawOval( (int)Math.round(x-radio), (int)Math.round(y-radio), (int)Math.round(radio*2), (int)Math.round(radio*2) );
+		if (dibujadoInmediato) panel.repaint();
+	}
+	
+	/** Dibuja un círculo en la ventana
+	 * @param x	Coordenada x del centro del círculo
+	 * @param y	Coordenada y del centro del círculo
+	 * @param radio	Radio del círculo (en píxels) 
+	 * @param grosor	Grueso del círculo (en píxels)
+	 * @param color  	Color del círculo
 	 */
 	public void dibujaCirculo( double x, double y, double radio, float grosor, Color color ) {
 		graphics.setColor( color );
