@@ -38,7 +38,7 @@ public class PruebaVentana {
 	}
 	
 	private static void moverConRaton( VentanaGrafica v, Pelota p, GrupoPelotas g ) {
-		v.setMensaje( "Se borra toda la pantalla 50 veces por segundo. Ver cómo ya no se borra la bola verde.");
+		v.setMensaje( "Haz drag para mover la bola azul. Ahora se borra toda la pantalla 50 veces por segundo. Ver cómo ya no se borra la bola verde.");
 		while (!v.estaCerrada()) {
 			java.awt.Point punto = v.getRatonPulsado();
 			if (punto!=null) {
