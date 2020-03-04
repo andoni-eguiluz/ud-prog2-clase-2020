@@ -32,8 +32,8 @@ public class PruebaVentana {
 	
 	private static void moverEnCurva( VentanaGrafica v, Pelota p1, Pelota p2 ) {
 		v.setMensaje( "Bola verde se mueve en y con el coseno 0-180, bola azul con el seno 0-180");
-		for (int inc=0; inc<180; inc++) {
-			p1.moverYDibujar( v, 1, Math.sin( Math.toRadians(inc) ) );
+		for (int inc=0; inc<360; inc++) {
+			p1.moverYDibujar( v, Math.cos( Math.toRadians(inc) ), Math.sin( Math.toRadians(inc) ) );
 			p2.moverYDibujar( v, 1, Math.cos( Math.toRadians(inc) ) );
 			v.espera( 40 );   // 2000 milisegundos / 50 movimientos
 		}
@@ -44,13 +44,14 @@ public class PruebaVentana {
 		while (!v.estaCerrada()) {
 			java.awt.Point punto = v.getRatonPulsado();
 			if (punto!=null) {
-				p.borra( v );
+				// p.borra( v );
 				p.setX( punto.x );
 				p.setY( punto.y );
-				p.dibuja( v );
+				// p.dibuja( v );
 			}
-			// v.borra();
-			// g.dibuja( v );
+			v.borra();
+			g.dibuja( v );
+			p.dibuja( v ); // Si quieres que la pelota que mueves quede por encima
 			v.espera( 20 );
 		}
 	}
