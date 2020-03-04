@@ -24,6 +24,8 @@ public class PruebaVentana {
 		g.anyadePelota( miPelota2 );
 		System.out.println( "Grupo de pelotas: " + g );
 		g.dibuja( v );
+		// TODO Quitar esto si solo tienes una pantalla
+		v.getJFrame().setLocation( 2000, 0 );
 		moverEnCurva( v, miPelota, miPelota2 );
 		moverConRaton( v, miPelota, g );
 	}
@@ -45,9 +47,10 @@ public class PruebaVentana {
 				p.borra( v );
 				p.setX( punto.x );
 				p.setY( punto.y );
+				p.dibuja( v );
 			}
-			v.borra();
-			g.dibuja( v );
+			// v.borra();
+			// g.dibuja( v );
 			v.espera( 20 );
 		}
 	}
