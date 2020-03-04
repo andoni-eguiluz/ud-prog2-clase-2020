@@ -126,4 +126,10 @@ public class Pelota {
 		return "(" + x + "," + y + ") R" + radio + " C<" + color.getRed()+","+color.getGreen()+","+color.getBlue()+">";
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		Pelota p2 = (Pelota) obj;
+		return x==p2.x && y==p2.y;
+	}
+	
 }

@@ -26,8 +26,11 @@ public class JuegoPelotas {
 			int radio = 50;
 			Color color = Color.magenta;
 			Pelota p = new Pelota( 0, 0, radio, color );
-			p.setX( r.nextInt( 5 ) * ANCHO_CASILLA + (ANCHO_CASILLA/2) );
-			p.setY( r.nextInt( 5 ) * ALTO_CASILLA + (ALTO_CASILLA/2) );
+			do { // Añadido para que no se repitan las pelotas
+				p.setX( r.nextInt( 5 ) * ANCHO_CASILLA + (ANCHO_CASILLA/2) );
+				p.setY( r.nextInt( 5 ) * ALTO_CASILLA + (ALTO_CASILLA/2) );
+				// boolean estaYa = grupo.buscaPelota(p)==-1;
+			} while (grupo.buscaPelotaEquals(p)!=-1);
 			grupo.anyadePelota( p );
 		}
 		grupo.dibuja( vent );

@@ -67,12 +67,24 @@ public class GrupoPelotas {
 	}
 	
 	/** Busca una pelota en el grupo
-	 * @param pelota	Pelota a buscar
+	 * @param pelota	Pelota a buscar (mismo objeto)
 	 * @return	Posición donde está la pelota, -1 si no se encuentra
 	 */
 	public int buscaPelota( Pelota pelota ) {
 		for (int i=0; i<pelotas.length; i++) {
 			if (pelota==pelotas[i]) return i;
+		}
+		return -1;
+	}
+	
+	// Añadido para poder buscar pelotas iguales siendo distintos objetos
+	/** Busca una pelota en el grupo
+	 * @param pelota	Pelota a buscar, de acuerdo a sus ATRIBUTOS
+	 * @return	Posición donde está la pelota, -1 si no se encuentra
+	 */
+	public int buscaPelotaEquals( Pelota pelota ) {
+		for (int i=0; i<numPelotas; i++) {
+			if (pelota.equals(pelotas[i])) return i;
 		}
 		return -1;
 	}
