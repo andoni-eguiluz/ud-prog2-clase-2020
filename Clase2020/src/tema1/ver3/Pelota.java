@@ -1,6 +1,8 @@
-package tema1.ver2;
+package tema1.ver3;
 
 import java.awt.Color;
+import java.awt.Point;
+
 import tema1.VentanaGrafica;
 
 /** Clase para creación de pelotas visibles en pantalla, con radio y color configurables
@@ -119,6 +121,26 @@ public class Pelota {
 	 */
 	public void borra( VentanaGrafica v ) {
 		v.dibujaCirculo( x, y, radio, 2.0f, Color.WHITE );
+	}
+	
+	/** Comprueba si un punto está dentro o no de la pelota
+	 * @param p	punto a comprobar
+	 * @return	true si está dentro, false si no
+	 */
+	public boolean contieneA( Point p ) {
+//		double distancia = Math.sqrt( (p.x-x) * (p.x-x) + (p.y-y) * (p.y-y) );
+//		return distancia <= radio;
+		return contieneA( p.x, p.y );
+	}
+	
+	/** Comprueba si un punto está dentro o no de la pelota
+	 * @param x	Coordenada x del punto
+	 * @param y	Coordenada y del punto
+	 * @return	true si está dentro, false si no
+	 */
+	public boolean contieneA( int x, int y ) {
+		double distancia = Math.sqrt( (x-this.x) * (x-this.x) + (y-this.y) * (y-this.y) );
+		return distancia <= radio;
 	}
 	
 	@Override

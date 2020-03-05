@@ -1,6 +1,7 @@
-package tema1.ver2;
+package tema1.ver3;
 
 import java.awt.Color;
+import java.awt.Point;
 import java.util.Random;
 
 import tema1.VentanaGrafica;
@@ -22,6 +23,37 @@ public class JuegoPelotas {
 	private static GrupoPelotas grupo;
 	
 	public static void main(String[] args) {
+		init();
+		juego();
+	}
+	
+	private static void juego() {
+		boolean juegoActivo = true;
+		while (!vent.estaCerrada() && juegoActivo) {
+			Point puls = vent.getRatonPulsado();
+			if (puls!=null) {
+				Pelota pDentro = grupo.buscaPuntoEnPelotas( puls );
+				if (pDentro!=null) {
+					Point drag = vent.getRatonPulsado();
+					while (drag!=null) {  // Esperar a que se acabe el drag
+						// Mientras estoy haciendo drag
+						pDentro.setX( drag.x );
+						pDentro.setY( drag.y );
+						// pDentro.dibuja( vent );
+						vent.borra();
+						grupo.dibuja( vent );
+						vent.espera( 20 );
+						drag = vent.getRatonPulsado();
+					}
+					// Final del movimiento
+					
+				}
+			}
+			vent.espera( 20 );
+		}
+	}
+	
+	private static void init() {
 		vent = new VentanaGrafica( anchoTablero * ANCHO_CASILLA, altoTablero * ALTO_CASILLA, "Juego" );
 		Random r = new Random();
 		grupo = new GrupoPelotas( numPelotas );
