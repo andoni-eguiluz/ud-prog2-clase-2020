@@ -7,7 +7,7 @@ import java.util.Random;
 import tema1.VentanaGrafica;
 
 /** Juego de alinear pelotas en un tablero imaginario de bolas de tres colores
- * Versión 3 - incluye ya jugabilidad mínima (se pueden mover pelotas, se quitan 3 pelotas o más seguidas)
+ * Versión 4 - incluye ya jugabilidad mínima (se pueden mover pelotas, se quitan 3 pelotas o más seguidas)
  * @author andoni.eguiluz at ingenieria.deusto.es
  */
 public class JuegoPelotas {
