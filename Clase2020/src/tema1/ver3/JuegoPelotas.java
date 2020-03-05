@@ -7,6 +7,7 @@ import java.util.Random;
 import tema1.VentanaGrafica;
 
 /** Juego de alinear pelotas en un tablero imaginario de bolas de tres colores
+ * Versión 3 - Primera interacción - mueve las pelotas pero a sitios arbitrarios (se montan, no comprueban huecos)
  * @author andoni.eguiluz at ingenieria.deusto.es
  */
 public class JuegoPelotas {
