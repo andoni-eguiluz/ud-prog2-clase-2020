@@ -83,7 +83,7 @@ public class Pelota {
 	 */
 	public void dibuja( VentanaGrafica v ) {
 		// Log de dibujo de pelota en consola
-		System.out.println( "Dibuja " + this );
+		// System.out.println( "Dibuja " + this );
 		// Dibujo en ventana
 		v.dibujaCirculo( x, y, radio, 2.0f, color);
 	}

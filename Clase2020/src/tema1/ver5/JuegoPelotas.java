@@ -7,7 +7,7 @@ import java.util.Random;
 import tema1.VentanaGrafica;
 
 /** Juego de alinear pelotas en un tablero imaginario de bolas de tres colores
- * Versión 5 - Incorpora la estrella (bonus) al borrar pelotas
+ * Versión 5 - Corrige error de drag fuera de tablero, incorpora la estrella (bonus) al borrar pelotas
  * @author andoni.eguiluz at ingenieria.deusto.es
  */
 public class JuegoPelotas {
@@ -23,6 +23,7 @@ public class JuegoPelotas {
 	private static int numSeguidasAQuitar = 3;  // Nº mínimo de pelotas seguidas del mismo color que se quitan
 	private static VentanaGrafica vent;
 	private static GrupoPelotas grupo;
+	private static GrupoEstrellas grupoEstrellas;
 	
 	public static void main(String[] args) {
 		init();
@@ -40,7 +41,7 @@ public class JuegoPelotas {
 					Point origen = new Point( (int)pDentro.getX(), (int)pDentro.getY() );
 					Point ultDrag = puls;
 					Point drag = vent.getRatonPulsado();
-					while (drag!=null) {  // Mientras no se acaba el drag se va moviendo y dibujando
+					while (drag!=null && drag.x>=0  ) {  // TODO Añadir los 3 bordes que faltan // Mientras no se acaba el drag se va moviendo y dibujando
 						pDentro.setX( drag.x );
 						pDentro.setY( drag.y );
 						// pDentro.dibuja( vent );  // Dibujamos todo de nuevo para evitar borrados extraños
@@ -71,6 +72,7 @@ public class JuegoPelotas {
 		vent = new VentanaGrafica( anchoTablero * ANCHO_CASILLA, altoTablero * ALTO_CASILLA, "Juego" );
 		Random r = new Random();
 		grupo = new GrupoPelotas( numPelotas );
+		grupoEstrellas = new GrupoEstrellas( 10 );
 		for (int i=0; i<numPelotas; i++) {
 			int radio = r.nextInt(RADIO_MAXIMO - RADIO_MINIMO + 1) + RADIO_MINIMO;
 			Color color = COLORES_PELOTA[ r.nextInt( COLORES_PELOTA.length ) ];
@@ -96,6 +98,7 @@ public class JuegoPelotas {
 	private static void dibujaTablero() {
 		vent.borra();
 		grupo.dibuja( vent );
+		grupoEstrellas.dibuja( vent );
 	}
 	// Devuelve la fila más cercana a la x indicada
 	private static int getFilaCercana( double x ) {
@@ -129,7 +132,7 @@ public class JuegoPelotas {
 		int numMovimientos = 500 / 20;
 		double movX = (xDestino - p.getX()) / 25;
 		double movY = (yDestino - p.getY()) / 25;
-		for (int i=0; i<25; i++) {
+		for (int i=0; i<numMovimientos; i++) {
 			p.moverYDibujar( vent, movX, movY );
 			dibujaTablero();
 			p.dibuja( vent );  // Dibuja la pelota que se está moviendo por "encima" de todo
@@ -203,6 +206,12 @@ public class JuegoPelotas {
 			}
 		}
 		if (numQuitadas>0) {  // Si se han quitado pelotas, se redibuja el tablero
+			if (numQuitadas>3) {
+				// TODO Calcular la puntuación
+				// Añadimos una estrella donde esté la última pelota quitada
+				Estrella estrella = new Estrella( ultimaQuitada.getX(), ultimaQuitada.getY(), 50, 50 );
+				grupoEstrellas.anyadeEstrella( estrella );
+			}
 			dibujaTablero(); 
 		}
 	}
