@@ -3,22 +3,22 @@ package tema3;
 public class EjemploHerencia {
 
 	public static void main(String[] args) {
-		A a = new A();
+		APadre a = new APadre();
 		a.i = 5;
 		System.out.println( a.i );
-		B b = new B();
+		BHija b = new BHija();
 		b.i = 7;
 		System.out.println( b.i );
 		a.ver();
 		b.ver();
 		b.verB();
 		b.quienSoy();
-		A incognita = new B();
+		APadre incognita = new BHija();
 		incognita.quienSoy();
 	}
 }
 
-class A {
+class APadre {
 	int i;
 	int j;
 	public void ver() {
@@ -29,7 +29,7 @@ class A {
 	}
 }
 
-class B extends A {
+class BHija extends APadre {
 //	int i;
 //	int j;
 	int k;
