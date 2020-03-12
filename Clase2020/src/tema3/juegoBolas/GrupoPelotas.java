@@ -2,7 +2,7 @@ package tema3.juegoBolas;
 
 import java.awt.Point;
 
-import tema1.VentanaGrafica;
+import tema3.VentanaGrafica;
 
 /** Clase que permite crear un grupo variable de pelotas y dibujarlo en pantalla
  * @author andoni.eguiluz at ingenieria.deusto.es

@@ -1,6 +1,8 @@
 package tema3.juegoBolas;
 
-import tema1.VentanaGrafica;
+import java.awt.Point;
+
+import tema3.VentanaGrafica;
 
 public class Estrella extends ObjetoJuego {
 	// double x; double y;  - se heredan, no hace falta definirlos 
@@ -40,8 +42,20 @@ public class Estrella extends ObjetoJuego {
 	public void dibuja( VentanaGrafica v ) {
 		// v.dibujaImagen( "ud-estrella.png", x, y, tamanyo, tamanyo, 1.0, 0, 1.0f );
 		// Cambio de dibujado con animación
-		v.dibujaImagen( "ud-estrella.png", x, y, tamanyo, tamanyo, zoom, rotacion, transparencia );
+		v.dibujaImagen( "/tema3/img/ud-estrella.png", x, y, tamanyo, tamanyo, zoom, rotacion, transparencia );
 	}
+	
+	@Override
+	/** Comprueba si un punto está dentro o no de la pelota
+	 * @param p	punto a comprobar
+	 * @return	true si está dentro, false si no
+	 */
+	public boolean contieneA( Point p ) {
+		double distancia = Math.sqrt( (p.x-this.x) * (p.x-this.x) + (p.y-this.y) * (p.y-this.y) );
+		return distancia <= tamanyo/2;
+	}
+	
+
 
 	@Override
 	public String toString() {

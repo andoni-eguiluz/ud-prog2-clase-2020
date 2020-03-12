@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Point;
 import java.util.Random;
 
-import tema1.VentanaGrafica;
+import tema3.VentanaGrafica;
 
 /** Juego de alinear pelotas en un tablero imaginario de bolas de tres colores
  * Versión 6 - Mejora la legibilidad de código de la versión 5 y añade las siguientes mejoras:

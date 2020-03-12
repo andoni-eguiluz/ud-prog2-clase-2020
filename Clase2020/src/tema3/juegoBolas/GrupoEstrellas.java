@@ -1,6 +1,6 @@
 package tema3.juegoBolas;
 
-import tema1.VentanaGrafica;
+import tema3.VentanaGrafica;
 
 /** Clase que permite crear un grupo variable de estrellas y dibujarlo en pantalla
  * @author andoni.eguiluz at ingenieria.deusto.es

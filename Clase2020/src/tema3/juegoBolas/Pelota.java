@@ -2,8 +2,7 @@ package tema3.juegoBolas;
 
 import java.awt.Color;
 import java.awt.Point;
-
-import tema1.VentanaGrafica;
+import tema3.VentanaGrafica;
 
 /** Clase para creación de pelotas visibles en pantalla, con radio y color configurables
  * @author andoni.eguiluz at ingenieria.deusto.es
@@ -54,6 +53,7 @@ public class Pelota extends ObjetoJuego {
 		this.color = color;
 	}
 	
+	@Override
 	/** Dibuja la pelota
 	 * @param v	Ventana en la que dibujar
 	 */
@@ -63,7 +63,8 @@ public class Pelota extends ObjetoJuego {
 		// Dibujo en ventana
 		v.dibujaCirculo( x, y, radio, GROSOR_PELOTA, color);
 	}
-	
+
+
 	/** Mueve la pelota una serie de píxels a la derecha y dibuja el movimiento
 	 * @param v	Ventana en la que dibujar
 	 * @param numPixels	Número de píxels a mover (debe ser positivo)
@@ -100,7 +101,8 @@ public class Pelota extends ObjetoJuego {
 	public void borra( VentanaGrafica v ) {
 		v.dibujaCirculo( x, y, radio, GROSOR_PELOTA, Color.WHITE );
 	}
-	
+
+	@Override
 	/** Comprueba si un punto está dentro o no de la pelota
 	 * @param p	punto a comprobar
 	 * @return	true si está dentro, false si no
@@ -128,10 +130,15 @@ public class Pelota extends ObjetoJuego {
 	
 	@Override
 	public boolean equals(Object obj) {
-		Pelota p2 = (Pelota) obj;
-		return x==p2.x && y==p2.y;  
-		// Si tuviera posibilidad de problemas de precisión
-		// return Math.abs(x-p2.x)<0.00001 && ...
+		// Completemos el equals ahora con herencia
+		if (!(obj instanceof Pelota)) {
+			return false;
+		} else {
+			// Pelota p2 = (Pelota) obj; // CAST!!!  Mira obj como lo que es: una Pelota
+			return x==((Pelota)obj).x && y==((Pelota)obj).y;  
+			// Si tuviera posibilidad de problemas de precisión
+			// return Math.abs(x-p2.x)<0.00001 && ...
+		}
 	}
 	
 }
