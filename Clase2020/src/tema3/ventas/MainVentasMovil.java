@@ -11,6 +11,8 @@ import tema3.VentanaGrafica;
  */
 public class MainVentasMovil {
 	
+/* Descomenta todo este código para que funcione el ejercicio completo
+
 	public static void main(String[] args) {
 		Tienda tienda = new Tienda( "Deustienda" );
 		// Datos de tienda
@@ -115,4 +117,6 @@ public class MainVentasMovil {
 		}
 	}
 
+*/
+	
 }
