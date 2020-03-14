@@ -11,12 +11,13 @@ public class EjemploWrappers {
 	public static void main(String[] args) {
 		// Object polimorfismo total
 		Object o = new String("A");  // "A"
-		System.out.println( o );
+		System.out.println( o.toString() );
 		o = new Point(2,5);
 		System.out.println( o.toString() );
 		o = new Pelota( 10, 10, 5, Color.RED );
 		System.out.println( o );
 		
+		// Contenedores de Objects, polimorfismo total
 		Object[] ao = new Object[5];
 		ao[0] = "A";
 		ao[1] = new Point(1,4);
@@ -37,13 +38,14 @@ public class EjemploWrappers {
 		o = new Integer(5);
 		ao[1] = new Integer(5);
 		
+		System.out.println( ao );
 		System.out.println( alo );
 		System.out.println( ao[1] );
 		
 		int total = 0;
+		// Se puede recorrer 
 		for (Object object : alo) {
-		// for (int i=0; i<alo.size(); i++) {
-		// 		Object object = alo.get(i);
+			// Y si queremos especializar, elegimos por tipo
 			if (object instanceof Integer) {
 				total += ((Integer)object).intValue();
 			}
@@ -56,7 +58,8 @@ public class EjemploWrappers {
 		
 		// Ayuditas
 		// Unboxing automático - conversión automática de wrapper al prim
-		i2 = ((Integer)ao[1]); //.intValue()
+		i2 = ((Integer)ao[1]).intValue(); // sacar el int del Integer
+		i2 = ((Integer)ao[1]); //.intValue() automático
 		
 		Integer objetoInt = new Integer(7);
 		int i3 = i2 + objetoInt; //.intValue() unboxing automático
