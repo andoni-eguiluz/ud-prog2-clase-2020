@@ -64,7 +64,6 @@ public class Pong {
 	private void init() {
 		Random random = new Random();
 		vent = new VentanaGrafica( ANCHO_VENTANA, ALTO_VENTANA, "Juego de pong" );
-		// vent.getJFrame().setLocation( 2300, 100 );  // TODO Quitarlo si solo tenemos una pantalla
 		// La bola
 		Circulo bola = new Circulo( RADIO_BOLA, X_INICIAL_BOLA, Y_INICIAL_BOLA, COLOR_BOLA );
 		bola.setVX( random.nextDouble() * VEL_RANGO * 2 - VEL_RANGO );

@@ -15,14 +15,6 @@ public abstract class Figura /*extends Object */ {
 	public static final double DISTANCIA_MINIMA_IGUALDAD = 0.0001;
 	// Nota: los atributos static no se "heredan" como copia, pero sí se pueden usar en las clases hijas
 	
-	/** Método de prueba no utilizado
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// Figura f = new Figura();  // ATENCIÓN - No se puede instanciar!!!  Al ser una clase abstracta
-		// Si se quiere hacer una prueba con una clase abstracta, solo puede utilizar las clases hijas, que sí son instanciables
-	}
-	
 	protected double x;      // Coordenada x de centro o punto de referencia de la figura (en píxels)
 	protected double y;      // Coordenada y de centro o punto de referencia de la figura (en píxels)
 	protected double velX;     // velocidad x de desplazamiento de la figura (en píxels por segundo)
