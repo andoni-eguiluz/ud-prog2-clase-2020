@@ -19,7 +19,7 @@ public class ReescalarVentanaGrafica {
 		// TODO Descomentar esto para solución 1
 		// solucion1(v);
 		// TODO Descomentar esto para solución 2
-		solucion2(v);
+		// solucion2(v);
 	}
 	
 	// Solución 1: Polling (preguntarnos todo el rato si hay cambio)
