@@ -2,7 +2,6 @@ package tema1.dudas;
 
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 
 import tema1.VentanaGrafica;
 
