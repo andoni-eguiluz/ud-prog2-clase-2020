@@ -29,6 +29,8 @@ public class RunnerNaves {
 	private static double VEL_JUEGO = 1.0;            // 1.0 = tiempo real. Cuando mayor, más rápido pasa el tiempo y viceversa 
 	private static Random random;                     // Generador de aleatorios para creación de asteroides
 	
+	/* Descomentar de aquí al final para ver el funcionamiento pretendido del ejercicio (faltan de codificar las clases básicas que utiliza)
+	
 	public static void main(String[] args) {
 		RunnerNaves juego = new RunnerNaves();
 		juego.jugar();
@@ -219,5 +221,7 @@ public class RunnerNaves {
 			tiempoNivel = System.currentTimeMillis();
 		}
 	}
+	
+	*/
 
 }
