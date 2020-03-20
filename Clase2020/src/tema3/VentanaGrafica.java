@@ -10,15 +10,16 @@ import java.util.*;
 /** Clase ventana sencilla para dibujado directo a la ventana
  */
 public class VentanaGrafica {
-	private JFrame ventana;       // Ventana que se visualiza
-	private boolean cerrada;      // Lógica de cierre (false al inicio)
-	private JPanel panel;         // Panel principal
-	private JLabel lMens;         // Etiqueta de texto de mensajes en la parte inferior
-	private BufferedImage buffer; // Buffer gráfico de la ventana
-	private Graphics2D graphics;  // Objeto gráfico sobre el que dibujar (del buffer)
-	private Point pointPressed;   // Coordenada pulsada de ratón (si existe)
-	private Point pointMoved;     // Coordenada pasada de ratón (si existe)
-	private Point pointMovedPrev; // Coordenada pasada anterior de ratón (si existe)
+	private JFrame ventana;         // Ventana que se visualiza
+	private boolean cerrada;        // Lógica de cierre (false al inicio)
+	private JPanel panel;           // Panel principal
+	private JLabel lMens;           // Etiqueta de texto de mensajes en la parte inferior
+	private BufferedImage buffer;   // Buffer gráfico de la ventana
+	private Graphics2D graphics;    // Objeto gráfico sobre el que dibujar (del buffer)
+	private Point pointPressed;     // Coordenada pulsada de ratón (si existe)
+	private boolean botonIzquierdo; // Información de si el último botón pulsado es izquierdo o no lo es
+	private Point pointMoved;       // Coordenada pasada de ratón (si existe)
+	private Point pointMovedPrev;   // Coordenada pasada anterior de ratón (si existe)
 	private boolean dibujadoInmediato = true; // Refresco de dibujado en cada orden de dibujado
 
 		private Object lock = new Object();  // Tema de sincronización de hilos para el acceso como si no los hubiera
@@ -71,6 +72,7 @@ public class VentanaGrafica {
 			public void mousePressed(MouseEvent e) {
 				synchronized (lock) {
 					pointPressed = e.getPoint();
+					botonIzquierdo = (e.getButton() == MouseEvent.BUTTON1);
 				}
 			}
 		});
@@ -85,6 +87,7 @@ public class VentanaGrafica {
 			public void mouseDragged(MouseEvent e) {
 				synchronized (lock) {
 					pointPressed = e.getPoint();
+					botonIzquierdo = (e.getButton() == MouseEvent.BUTTON1);
 				}
 			}
 		});
@@ -136,6 +139,13 @@ public class VentanaGrafica {
 		synchronized (lock) {
 			return pointPressed;
 		}
+	}
+	
+	/** Devuelve la información de si el último botón pulsado es izquierdo o no lo es
+	 * @return	true si el último botón de ratón pulsado es el izquierdo
+	 */
+	public boolean isBotonIzquierdo() {
+		return botonIzquierdo;
 	}
 	
 	/** Devuelve el punto donde está el ratón en este momento
