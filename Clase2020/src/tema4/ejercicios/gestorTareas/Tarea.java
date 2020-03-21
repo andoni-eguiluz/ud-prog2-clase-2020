@@ -4,15 +4,17 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.io.Serializable;
 
 import tema3.VentanaGrafica;
 
 /** Clase que permite modelar cada tarea de nuestro sistema
  * @author andoni.eguiluz @ ingenieria.deusto.es
  */
-public class Tarea extends ObjetoGT implements Movible {
+public class Tarea extends ObjetoGT implements Movible, Serializable {
 	
 	// Parte static
+	private static final long serialVersionUID = 1L; // Versión para la serialización
 	
 	/** Coordenada por defecto de la tarea */
 	public static final Point COORD_POR_DEFECTO = new Point( 10, 30 );
@@ -37,6 +39,12 @@ public class Tarea extends ObjetoGT implements Movible {
 	private String descripcion;
 	private Color color;
 	private boolean resuelto;
+	
+	/** Constructor por defecto - necesario cuando hay serialización aunque no se use de forma pública
+	 */
+	private Tarea() {
+		super(0,0,null);
+	}
 	
 	/** Crea una tarea nueva sin resolver
 	 * @param x	Coordenada x del centro visual de la tarea

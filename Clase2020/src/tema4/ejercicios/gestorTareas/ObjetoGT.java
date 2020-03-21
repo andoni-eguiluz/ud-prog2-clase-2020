@@ -1,14 +1,19 @@
 package tema4.ejercicios.gestorTareas;
 
+import java.io.Serializable;
+
 import tema3.VentanaGrafica;
 
 /** Objeto general de gestión de tareas, clase padre de la jerarquía de objetos que se dibujan en la ventana
  * @author andoni.eguiluz @ ingenieria.deusto.es
  */
-public abstract class ObjetoGT extends Object {
+public abstract class ObjetoGT extends Object implements Serializable {
+
+	private static final long serialVersionUID = 1L;  // Para que las clases hijas puedan ser serializables, las padres también deben serlo (si no sus atributos no se guardan)
+	
 	protected int x;
 	protected int y;
-	protected VentanaGrafica ventana;
+	protected transient VentanaGrafica ventana;  // Los atributos TRANSIENT no se serializan (no tiene sentido serializar la ventana, porque va a ser distinta en cada ejecución)
 	
 	/** Crea un nuevo objeto
 	 * @param x	Posición x (horizontal)
@@ -40,6 +45,10 @@ public abstract class ObjetoGT extends Object {
 
 	public VentanaGrafica getVentana() {
 		return ventana;
+	}
+
+	public void setVentana( VentanaGrafica ventana ) {
+		this.ventana = ventana;
 	}
 
 	/** Dibuja el objeto en su ventana gráfica

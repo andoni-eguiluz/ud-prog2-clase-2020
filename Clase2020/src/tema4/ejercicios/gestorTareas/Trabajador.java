@@ -2,13 +2,15 @@ package tema4.ejercicios.gestorTareas;
 
 import java.awt.Color;
 import java.awt.Point;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import tema3.VentanaGrafica;
 
-public class Trabajador extends ObjetoGT implements Movible {
+public class Trabajador extends ObjetoGT implements Movible, Serializable {
 	
 	//================= Parte static
+	private static final long serialVersionUID = 1L; // Versión para la serialización
 	
 	/** Coordenada por defecto del trabajador */
 	public static final Point COORD_POR_DEFECTO = new Point( 400, 50 );
@@ -26,6 +28,12 @@ public class Trabajador extends ObjetoGT implements Movible {
 	String imagen;
 	ArrayList<Tarea> tareasAsignadas;
 
+	/** Constructor por defecto - necesario cuando hay serialización aunque no se use de forma pública
+	 */
+	private Trabajador() {
+		super(0,0,null);
+	}
+	
 	/** Crea un nuevo trabajador sin tareas asignadas
 	 * @param x	Coordenada x
 	 * @param y	Coordenada y
@@ -78,7 +86,6 @@ public class Trabajador extends ObjetoGT implements Movible {
 	@Override
 	public boolean contienePunto(int x, int y) {
 		double dist = Math.sqrt( (x-this.x)*(x-this.x) + (y-this.y)*(y-this.y) );
-		System.out.println( (dist<=TAMANYO/2) + " - " + nombre );
 		return dist<=TAMANYO/2;
 	}
 

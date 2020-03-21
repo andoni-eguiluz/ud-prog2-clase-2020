@@ -2,6 +2,13 @@ package tema4.ejercicios.gestorTareas;
 
 import java.awt.Color;
 import java.awt.Point;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -26,6 +33,7 @@ public class GestorTareas {
 	
 	public static final int ANCHURA_VENTANA = 1000;
 	public static final int ALTURA_VENTANA = 800;
+	public static final String NOM_FICHERO = "GestorTareas.dat";
 	
 	// =================== Parte no static
 	
@@ -61,6 +69,7 @@ public class GestorTareas {
 		if (okLogin) {
 			initDatos();
 			interaccion();
+			guardaDatosFichero( new File( NOM_FICHERO ) );
 		}
 	}
 
@@ -76,15 +85,49 @@ public class GestorTareas {
 	
 	// Proceso de inicializar datos de la ventana de trabajo
 	private void initDatos() {
-		listaObjetos.add( new Trabajador( 450, 200, ventana, "Chris", "/tema3/ejercicios/gestorTareas/img/chris.png" ) );
-		listaObjetos.add( new Trabajador( 800, 200, ventana, "Julia", "/tema3/ejercicios/gestorTareas/img/julia.png" ) );
-		listaObjetos.add( new Trabajador( 450, 600, ventana, "Natalie", "/tema3/ejercicios/gestorTareas/img/natalie.png" ) );
-		listaObjetos.add( new Trabajador( 800, 600, ventana, "Jim", "/tema3/ejercicios/gestorTareas/img/jim.png" ) );
+		File fichero = new File( NOM_FICHERO );
+		if (fichero.exists()) { // Si hay guardado de datos previo
+			cargaDatosFichero( fichero );
+		} else { // Si no
+			listaObjetos.add( new Trabajador( 450, 200, ventana, "Chris", "/tema3/ejercicios/gestorTareas/img/chris.png" ) );
+			listaObjetos.add( new Trabajador( 800, 200, ventana, "Julia", "/tema3/ejercicios/gestorTareas/img/julia.png" ) );
+			listaObjetos.add( new Trabajador( 450, 600, ventana, "Natalie", "/tema3/ejercicios/gestorTareas/img/natalie.png" ) );
+			listaObjetos.add( new Trabajador( 800, 600, ventana, "Jim", "/tema3/ejercicios/gestorTareas/img/jim.png" ) );
+		}
+		// Los botones se añaden en cualquier caso
 		botonNueva = new Boton( 40, 40, ventana, "NUEVA", "/tema3/ejercicios/gestorTareas/img/add.png" );
 		botonTrash = new Boton( 40, 760, ventana, "PAPELERA", "/tema3/ejercicios/gestorTareas/img/trash.png" );
 		listaObjetos.add( botonNueva );
 		listaObjetos.add( botonTrash );
 	}
+		private void cargaDatosFichero( File f ) {
+			try { // Estructura de gestión de errores (capítulo 6)
+				ObjectInputStream ois = new ObjectInputStream( new FileInputStream( f ) );
+				ObjetoGT ogt = (ObjetoGT) ois.readObject();
+				while (ogt!=null) {
+					ogt.setVentana( ventana ); // La ventana no se serializa
+					listaObjetos.add( ogt );
+					ogt = (ObjetoGT) ois.readObject();
+				}
+				ois.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		private void guardaDatosFichero( File f ) {
+			try { // Estructura de gestión de errores (capítulo 6)
+				ObjectOutputStream oos = new ObjectOutputStream( new FileOutputStream( f ) );
+				for (ObjetoGT ogt : listaObjetos) {
+					if (!(ogt instanceof Boton)) {  // Los botones no se guardan
+						oos.writeObject( ogt );
+					}
+				}
+				oos.writeObject( null );  // Marca el final de los datos
+				oos.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	
 	// Proceso de gestión de interacción de ratón por parte del usuario
 	private void interaccion() {
