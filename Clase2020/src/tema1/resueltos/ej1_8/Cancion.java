@@ -34,14 +34,14 @@ public class Cancion {
 	}
 	
 	/** Añade una partitura en formato string. Las notas se deben separar por espacios y cada nota
-	 * tiene su indicación textual, y puede ir precedida de su duración, y seguida de su octava, del siguiente modo:<br/>
-	 * - La duración hace referencia al tiempo de cada nota: 1 para una redonda (tiempo completo), 1/2 para blanca, 1/4 para corchea, etc. (valores habituales: 4/1, 2/1, 1/1, 1/2, 1/4, 1/8, 1/16, 1/32, 1/64, 1/128, 1/256<br/>
-	 * - La nota es el texto en castellano: do, re, mi, fa, sol, la, si, do. También los sostenidos: do#, re#, fa#, sol#, la#, o los equivalentes bemoles: reb, mib, solb, lab, sib<br/>
-	 * - La octava es la octava del teclado de piano, entre 0 y 8 (las medias entre 3 y 5)<br/>
+	 * tiene su indicación textual, y puede ir precedida de su duración, y seguida de su octava, del siguiente modo:<br>
+	 * - La duración hace referencia al tiempo de cada nota: 1 para una redonda (tiempo completo), 1/2 para blanca, 1/4 para corchea, etc. (valores habituales: 4/1, 2/1, 1/1, 1/2, 1/4, 1/8, 1/16, 1/32, 1/64, 1/128, 1/256<br>
+	 * - La nota es el texto en castellano: do, re, mi, fa, sol, la, si, do. También los sostenidos: do#, re#, fa#, sol#, la#, o los equivalentes bemoles: reb, mib, solb, lab, sib<br>
+	 * - La octava es la octava del teclado de piano, entre 0 y 8 (las medias entre 3 y 5)<br>
 	 * Ejemplo: "1/2sol3 1/4mi3 1/4fa3 1/2sol3 1/8sol3 1/8do4 1/8sol3 1/8fa3 1/4mi3"
-	 * @param partitura
-	 * @param durDefectoNum
-	 * @param durDefectoDen
+	 * @param partitura	Partitura a añadir
+	 * @param durDefectoNum	Duración por defecto (numerador)
+	 * @param durDefectoDen	Duración por defecto (denominador)
 	 */
 	public void addPartitura( String partitura, int durDefectoNum, int durDefectoDen ) {
 		String[] notas = partitura.split( " " );

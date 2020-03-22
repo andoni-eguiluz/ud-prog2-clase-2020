@@ -87,7 +87,7 @@ public class Acorde {
 	}
 
 	/** Modifica la duración del acorde (siempre relativa al tempo que se define externamente)
-	 * @param duracionNum	Denominador de la duración
+	 * @param duracionDen	Denominador de la duración
 	 */
 	public void setDuracionDen(int duracionDen) {
 		this.duracionDen = duracionDen;

@@ -42,7 +42,7 @@ public class Trabajador {
 	}
 	
 	/** Informa si el trabajador está libre
-	 * @return	true si no tiene trabajo, false si todavía lo tiene (tiempoPendiente>0)
+	 * @return	true si no tiene trabajo, false si todavía lo tiene (tiempoPendiente&gt;0)
 	 */
 	public boolean isLibre() {
 		return tiempoPendiente == 0;
@@ -57,7 +57,7 @@ public class Trabajador {
 	}
 	
 	/** Simula el paso de tiempo en la tienda. Si el trabajador está ocupado, trabaja en su función y disminuye su tiempo pendiente
-	 * @param segundos
+	 * @param segundos	tiempo que pasa
 	 */
 	public void pasaElTiempo( int segundos ) {
 		if (tiempoPendiente==0) return; // Si el trabajador está libre sigue libre (nada que hacer)

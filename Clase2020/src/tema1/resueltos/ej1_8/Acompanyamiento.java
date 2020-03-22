@@ -43,7 +43,7 @@ public class Acompanyamiento {
 	}
 	
 	/** Modifica el tempo de la composición
-	 * @param numOctava	Nuevo tempo (número de segundos por cada tiempo de partitura)
+	 * @param tempo	Nuevo tempo (número de segundos por cada tiempo de partitura)
 	 */
 	public void setTempo( double tempo ) {
 		this.tempo = tempo;
@@ -59,15 +59,15 @@ public class Acompanyamiento {
 	}
 	
 	/** Añade una partitura de acordes en formato string. Los acordes se deben separar por espacios y cada acorde
-	 * tiene su indicación de nota textual, y puede ir precedida de su duración, debe ir seguida del tipo de acorde, y puede ir seguida de su octava, del siguiente modo:<br/>
-	 * - La duración hace referencia al tiempo de cada acorde: 1 para una redonda (tiempo completo), 1/2 para blanca, 1/4 para corchea, etc. (valores habituales: 4/1, 2/1, 1/1, 1/2, 1/4, 1/8<br/>
-	 * - La nota es el texto en castellano: do, re, mi, fa, sol, la, si, do. También los sostenidos: do#, re#, fa#, sol#, la#, o los equivalentes bemoles: reb, mib, solb, lab, sib<br/>
-	 * - La octava es la octava del teclado de piano, entre 0 y 8 (las medias entre 3 y 5)<br/>
+	 * tiene su indicación de nota textual, y puede ir precedida de su duración, debe ir seguida del tipo de acorde, y puede ir seguida de su octava, del siguiente modo:<br>
+	 * - La duración hace referencia al tiempo de cada acorde: 1 para una redonda (tiempo completo), 1/2 para blanca, 1/4 para corchea, etc. (valores habituales: 4/1, 2/1, 1/1, 1/2, 1/4, 1/8<br>
+	 * - La nota es el texto en castellano: do, re, mi, fa, sol, la, si, do. También los sostenidos: do#, re#, fa#, sol#, la#, o los equivalentes bemoles: reb, mib, solb, lab, sib<br>
+	 * - La octava es la octava del teclado de piano, entre 0 y 8 (las medias entre 3 y 5)<br>
 	 * - El tipo de acorde es "M" para mayor, "m" para menor, "7" para séptima
 	 * Ejemplo: "doM sol3M 1/2la3m"
-	 * @param partitura
-	 * @param durDefectoNum
-	 * @param durDefectoDen
+	 * @param partitura	Partitura a añadir
+	 * @param durDefectoNum	Duración por defecto (numerador)
+	 * @param durDefectoDen	Duración por defecto (denominador)
 	 */
 	public void addPartitura( String partitura, int durDefectoNum, int durDefectoDen ) {
 		String[] acordes = partitura.split( " " );

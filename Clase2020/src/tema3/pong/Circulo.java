@@ -84,7 +84,7 @@ public class Circulo extends Figura {
 	}
 
 	/** Cambia la rotación del círculo
-	 * @param radio	Nueva rotación del círculo, en radianes
+	 * @param rotacion	Nueva rotación del círculo, en radianes
 	 */
 	public void setRotacion(double rotacion) {
 		this.rot = rotacion;
@@ -153,7 +153,7 @@ public class Circulo extends Figura {
 	// Nota: Aunque sí se pueden indicar si el método aporta algo diferencial como aquí
 	
 	/** Comprueba si el círculo es igual a otro objeto dado. Se entiende que dos círculos son iguales
-	 * cuando las coordenadas de sus centros (redondeadas a enteros) son muy cercanas (distancia x e y inferior a ) - {@link #tema3.pong.Figura.DISTANCIA_MINIMA_IGUALDAD} 
+	 * cuando las coordenadas de sus centros (redondeadas a enteros) son muy cercanas (distancia x e y inferior a ) - {@link tema3.pong.Figura#DISTANCIA_MINIMA_IGUALDAD} 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override

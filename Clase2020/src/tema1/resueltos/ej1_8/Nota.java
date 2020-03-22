@@ -90,7 +90,7 @@ public class Nota {
 	}
 
 	/** Modifica la duración de la nota (siempre relativa al tempo que se define externamente)
-	 * @param duracionNum	Denominador de la duración de la nota
+	 * @param duracionDen	Denominador de la duración de la nota
 	 */
 	public void setDuracionDen(int duracionDen) {
 		this.duracionDen = duracionDen;

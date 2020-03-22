@@ -11,10 +11,10 @@ public class Pastilla {
 	private int medida;
 		
 	/** Construye una pastilla nueva (errónea si la unidad no tiene un valor correcto)
-	 * @param	Marca del medicamento (p ej. "Termalgin")
-	 * @param	Componente activo del medicamento
-	 * @param	Unidad de medida del componente activo: "mgr", "ml" o "ud"
-	 * @param	cantidad del componente activo
+	 * @param marca	Marca del medicamento (p ej. "Termalgin")
+	 * @param componente	Componente activo del medicamento
+	 * @param unidad	Unidad de medida del componente activo: "mgr", "ml" o "ud"
+	 * @param miligramos	cantidad del componente activo
 	 */
 	public Pastilla( String marca, String componente, String unidad, int miligramos ) {
 		this.marca = marca;
@@ -35,7 +35,7 @@ public class Pastilla {
 		return unidad;
 	}
 	/** Cambia la unidad de medida
-	 * @param	Unidad de medida del componente activo: "mgr", "ml" o "ud"
+	 * @param unidad	Unidad de medida del componente activo: "mgr", "ml" o "ud"
 	 */
 	public void setUnidad(String unidad) {
 		this.unidad = unidad;

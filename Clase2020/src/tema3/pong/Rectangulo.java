@@ -89,7 +89,7 @@ public class Rectangulo extends Figura {
 	}
 
 	/** Cambia la altura del rectángulo. Debe ser mayor que cero
-	 * @param anc	Nueva altura del rectángulo en píxels (debe ser mayor que cero)
+	 * @param alt	Nueva altura del rectángulo en píxels (debe ser mayor que cero)
 	 */
 	public void setAltura(double alt) {
 		this.tamY = alt;
@@ -126,7 +126,7 @@ public class Rectangulo extends Figura {
 		return x + "," + y + " (" + tamX + "," + tamY + ")";
 	}
 	
-	/** Comprueba si el rectángulo es igual a otro objeto dado. Se entiende que dos rectángulos son iguales o muy cercanas  - {@link #tema3.pong.Figura.DISTANCIA_MINIMA_IGUALDAD}
+	/** Comprueba si el rectángulo es igual a otro objeto dado. Se entiende que dos rectángulos son iguales o muy cercanas  - {@link tema3.pong.Figura#DISTANCIA_MINIMA_IGUALDAD}
 	 * y sus tamaños (altura y anchura) también lo son
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */

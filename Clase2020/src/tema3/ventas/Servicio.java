@@ -9,7 +9,7 @@ public class Servicio extends Producto {
 	// TODO Pendiente definir clase
 	
 	/** Calcula el tiempo de servicio y el precio de instalación de apps en función del número de apps a instalar
-	 * @param numAppsAInstalar	Número > 0 de apps que se quieren instalar
+	 * @param numAppsAInstalar	Número &gt; 0 de apps que se quieren instalar
 	 */
 	public void calcInstalacionApps( int numAppsAInstalar ) {
 		// TODO
