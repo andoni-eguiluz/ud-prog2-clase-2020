@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import tema3.VentanaConsolaConBotones;
 
 /** Clase que permite crear cronómetros para medir tiempos con pausa, con precisión de milisegundo
+ * Incluye equals y toString redefinidos (de Object)
  * @author andoni.eguiluz at ingenieria.deusto.es
  */
 public class Crono {
