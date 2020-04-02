@@ -21,6 +21,7 @@ import javax.swing.text.StyledDocument;
  * específicos de color
  * Haciendo Ctrl+F se busca el texto que esté en la línea de entrada
  * Permite además configurar botones de entrada específicos en lugar de entrada por teclado
+ * @version 1.1.05 - 2020/04/02
  * @author andoni.eguiluz at ingenieria.deusto.es
  */
 public class VentanaConsolaConBotones {
@@ -76,7 +77,7 @@ public class VentanaConsolaConBotones {
 	 */
 	public VentanaConsolaConBotones(String titulo) {
 		miVentana = new JFrame();
-		miVentana.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+		miVentana.setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
 		miVentana.setSize( 800, 600 );
 		miVentana.setLocationRelativeTo( null );
 		miVentana.setTitle( titulo==null ? "Ventana de consola" : titulo );
@@ -175,7 +176,7 @@ public class VentanaConsolaConBotones {
 			espera(20);
 		}
 		pSuperior.removeAll();
-		miVentana.getContentPane().revalidate();
+		if (miVentana!=null) miVentana.getContentPane().revalidate();
 		return resp;
 	}
 	
@@ -334,6 +335,12 @@ public class VentanaConsolaConBotones {
 	 */
 	public void println( String s ) {
 		print( s + "\n" );
+	}
+	
+	/** Escribe en la ventana una línea
+	 */
+	public void println() {
+		print( "\n" );
 	}
 	
 	/** Escribe en la ventana una línea con color
