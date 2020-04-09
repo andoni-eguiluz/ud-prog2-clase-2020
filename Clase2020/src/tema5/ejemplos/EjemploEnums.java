@@ -1,7 +1,5 @@
 package tema5.ejemplos;
 
-import java.util.Arrays;
-
 /** Ejemplo de uso de enum
  * @author andoni.eguiluz at ingenieria.deusto.es
  */
@@ -15,13 +13,17 @@ public class EjemploEnums {
 		String color = "rojo";
 		color = "verde";
 		color = "berde";
+		System.out.println( "Color string: " + color );
 		
 		// Podría codificarlo con enteros... pero ¿quién es quién? ¿Por qué 0 es rojo y no verde?		
 		int color2 = 0;  // 0 rojo
 		color2 = 1; // 1 verde  ¿o era azul?
+		System.out.println( "Color entero: " + color2 );
+		
 		// En informática nos hemos pasado décadas codificando valores con enteros, normalmente con constantes:.
 		final int COLOR_ROJO = 0;
 		final int COLOR_VERDE = 1;
+		System.out.println( "Color entero en constante: " + COLOR_VERDE );
 		// De hecho Java todavía lo sigue usando mucho
 		// Por ejemplo: https://docs.oracle.com/javase/8/docs/api/javax/swing/WindowConstants.html#DISPOSE_ON_CLOSE
         // Ahí puedes ver tres posibilidades (que comentaremos en ventanas) HIDE / DISPOSE / EXIT que son los enteros		
@@ -32,6 +34,7 @@ public class EjemploEnums {
 		// Por ejemplo si le pedimos a un usuario que introduzca un color 0-1-2-3  ¿qué color es cada uno?
 		
 		// Solución de muchos lenguajes modernos: ENUMERACIONES
+		// Ventajas: no cabe error léxico, no hay que aprender códigos innaturales, pero se mantiene la relación con número si la queremos
 		// En java palabra clave enum usar enums.  (ver abajo: "MiColor")
 		// Se pueden asignar directamente con información "simbólica" (identificadores)
 		MiColor color3 = MiColor.ROJO;
