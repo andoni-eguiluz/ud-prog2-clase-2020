@@ -1,6 +1,9 @@
-package tema5;
+package tema5.ejemplos;
 
 import java.util.*;
+
+import tema5.Contador;
+import tema5.ProcesaURLs;
 
 /** Ejemplo de colecciones de Java Collection
  * Partiendo de equipos de fútbol recopilados de la web

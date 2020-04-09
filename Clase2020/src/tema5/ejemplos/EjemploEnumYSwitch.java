@@ -1,4 +1,4 @@
-package tema5;
+package tema5.ejemplos;
 
 /** Ejemplo de enum utilizado con switch (explicación de por qué hay que usar break; en los switch)
  * @author andoni.eguiluz at ingenieria.deusto.es

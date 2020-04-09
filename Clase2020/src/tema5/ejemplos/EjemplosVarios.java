@@ -1,4 +1,6 @@
-package tema5;
+package tema5.ejemplos;
+
+import tema5.ColorParchis;
 
 public class EjemplosVarios {
 	public static void main(String[] args) {

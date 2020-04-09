@@ -1,7 +1,9 @@
-package tema5;
+package tema5.ejemplos;
 
 import java.util.HashSet;
 import java.util.TreeSet;
+
+import tema5.Contador;
 
 public class EjemploProblemasHashYTree {
 	public static void main(String[] args) {
