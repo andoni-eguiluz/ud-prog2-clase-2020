@@ -13,6 +13,7 @@ public class ConceptoJavaCollections {
 		pruebaMapas();
 	}
 	
+	@SuppressWarnings("unused")
 	private static void pruebaListas() {
 		ArrayList<String> l = new ArrayList<String>();
 		l.add( "Hola" );
@@ -33,6 +34,7 @@ public class ConceptoJavaCollections {
 		System.out.println( l  + " - tamaño " + l.size() );
 	}
 	
+	@SuppressWarnings("unused")
 	private static void pruebaSets() {
 		String[] palabras = { "Java", "método", "clase", "objeto", "método", "instancia", "interfaz", "herencia", "polimorfismo", "Java" };
 		HashSet<String> conjHash = new HashSet<String>();

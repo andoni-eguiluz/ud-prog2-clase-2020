@@ -34,7 +34,7 @@ public class BucleForEach {
 	
 	private static void ejemploArrayList() {
 		// Un for each permite recorrer un arraylist, y en general cualquier Collection
-		ArrayList<String> lStrings = new ArrayList( Arrays.asList( "a", "b", "c" ) );
+		ArrayList<String> lStrings = new ArrayList<String>( Arrays.asList( "a", "b", "c" ) );
 		System.out.print( "Arraylist de strings: ");
 		for (String s : lStrings) {
 			System.out.print( s + "  " );
@@ -65,7 +65,7 @@ public class BucleForEach {
 		System.out.println( "  - Por tanto no se pueden recorrer dos arrays a la vez" );
 
 		System.out.println( "- Modificar la estructura según se recorre (puede provocar funcionamiento parcial o errores)" );
-		ArrayList<String> lStrings = new ArrayList( Arrays.asList( "a", "b", "c" ) );
+		ArrayList<String> lStrings = new ArrayList<String>( Arrays.asList( "a", "b", "c" ) );
 		System.out.print( "Arraylist de strings: ");
 		for (String s : lStrings) {
 			System.out.print( s + "  " );
