@@ -1,4 +1,4 @@
-package tema5;
+package tema5.ejemplos.pelis;
 
 import java.io.Serializable;
 

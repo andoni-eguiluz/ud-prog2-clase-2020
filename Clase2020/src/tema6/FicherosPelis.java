@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import tema5.Peli;
+import tema5.ejemplos.pelis.Peli;
 
 /** Ejemplo de gestión de ficheros, utilizando la clase Peli
  * @author andoni.eguiluz at deusto.es

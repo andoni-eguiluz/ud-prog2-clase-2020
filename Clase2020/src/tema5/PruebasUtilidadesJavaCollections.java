@@ -5,6 +5,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 
+import tema5.ejemplos.pelis.Comparador1;
+import tema5.ejemplos.pelis.Comparador2;
+import tema5.ejemplos.pelis.Peli;
+
 public class PruebasUtilidadesJavaCollections {
 	public static void main(String[] args) {
 		ArrayList<Peli> l = new ArrayList<Peli>();
