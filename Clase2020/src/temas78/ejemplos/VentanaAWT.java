@@ -16,7 +16,7 @@ import java.awt.GridLayout;
  	(compararla con VentanaCompletaSwing)
   */
 @SuppressWarnings("serial")
-public class VentanaAWT2 extends Frame {
+public class VentanaAWT extends Frame {
 	Panel panelNorte;
 	Panel panelCentral;
 	Panel panelSur;
@@ -51,7 +51,7 @@ public class VentanaAWT2 extends Frame {
 	Button insertar;
 	Button salir;
 	
-	public VentanaAWT2()
+	public VentanaAWT()
 	{
 		panelNorte= new Panel();
 		panelCentral = new Panel();
@@ -124,11 +124,10 @@ public class VentanaAWT2 extends Frame {
 		this.add(panelCentral, "Center");		
 		this.setSize(450,425);
 		this.setTitle("Currículum Vitae");
-		this.setVisible(true);
 	}
 
 	public static void main(String[] args)
 	{
-		new VentanaAWT2();
+		(new VentanaAWT()).setVisible(true);
 	}
 }

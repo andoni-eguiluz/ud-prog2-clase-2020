@@ -479,8 +479,24 @@ public class VentanaGrafica {
 		if (dibujadoInmediato) panel.repaint();
 	}
 	
-	
-	
+	/** Dibuja un texto en la ventana, centrado en un rectángulo dado
+	 * @param x	Coordenada x de la esquina superior izquierda del rectángulo
+	 * @param y	Coordenada y de la esquina superior izquierda del rectángulo
+	 * @param anchura
+	 * @param altura
+	 * @param texto	Texto a dibujar 
+	 * @param font	Tipo de letra con el que dibujar el texto
+	 * @param color	Color del texto
+	 */
+	public void dibujaTextoCentrado( double x, double y, double anchura, double altura, String texto, Font font, Color color ) {
+		Rectangle2D rect = graphics.getFontMetrics(font).getStringBounds(texto, graphics);  // Dimensiones del texto que se va a pintar
+		graphics.setColor( color );
+		graphics.setFont( font );
+		double xCalc = x + anchura/2.0 - rect.getWidth()/2.0;
+		double yCalc = y + altura - rect.getHeight()/2.0;
+		graphics.drawString( texto, (float)xCalc, (float)yCalc );
+		if (dibujadoInmediato) panel.repaint();
+	}
 	
 	
 	/** Devuelve el objeto de gráfico sobre el que pintar, correspondiente al 
