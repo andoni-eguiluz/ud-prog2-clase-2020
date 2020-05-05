@@ -21,6 +21,7 @@ public class MiSegundaVentana extends JFrame {
 		vent.setVisible( true );
 		System.out.println( "Final" );
 	}
+
 	
 	// PARTE NO STATIC - Ventana
 	

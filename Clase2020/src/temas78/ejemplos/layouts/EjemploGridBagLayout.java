@@ -34,6 +34,7 @@ public class EjemploGridBagLayout {
 		//Create and set up the window.
 		JFrame frame = new JFrame( "Ejemplo GridBagLayout" );
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		// frame.setLocation( 2000, 100 );  // Si se quiere poner en otra posición
 
 		//Set up the content pane.
 		addComponentsToPane(frame.getContentPane());

@@ -29,6 +29,7 @@ public class VentanaConDiferentesLayouts extends JFrame {
 		getContentPane().add(boton5);
 
 		this.setSize(800,600);
+		// this.setLocation( 2900, 100 );  // Si se quiere cambiar la posición
 		
 		boton1.addActionListener( new ActionListener() {
 			@Override
@@ -41,6 +42,9 @@ public class VentanaConDiferentesLayouts extends JFrame {
 				getContentPane().add( boton4, BorderLayout.EAST );
 				getContentPane().add( boton5, BorderLayout.SOUTH );
 				getContentPane().revalidate();  // El cambio de estructura en caliente necesita un revalidate()
+				// Si quisiéramos quitar componentes para añadir otros tenemos métodos de eliminación:
+				// getContentPane().remove( componente );  // Quita un componente particular
+				// getContentPane().removeAll();  // Quita todos
 			}
 		});
 		boton2.addActionListener( new ActionListener() {

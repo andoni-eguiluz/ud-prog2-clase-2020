@@ -31,6 +31,7 @@ public class EjemploAnimacionBalonJLabel extends JFrame {
 	public EjemploAnimacionBalonJLabel() {
 		// Configuración de ventana
 		setSize( 1000, 800 );
+		// setLocation( 2000, 50 );  // Si queremos cambiar la posición
 		setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
 		// Crear comps y conts
 		// (posibilidad 1) Acceder como fichero
@@ -42,6 +43,8 @@ public class EjemploAnimacionBalonJLabel extends JFrame {
 		pFondo.setLayout( null );
 		// Configuración de componentes
 		lBalon.setBounds( 0, 500, 60, 60 );  // Un JLabel gráfico no da mucho "juego", solo posición y tamaño (ver JLabelGraficoAjustado)
+		// lBalon.setLocation( 0, 500 );  // Es lo mismo bounds que location + size
+		// lBalon.setSize( 60, 60 );
 		// lBalon.setOpaque( true );  // si quisiéramos que tuviera fondo (normalmente son preferibles imágenes transparentes png)
 		// lBalon.setBorder( BorderFactory.createLineBorder( Color.red, 2 ));  // si queremos ponerle el borde
 		// Añadir comps a contenedores
