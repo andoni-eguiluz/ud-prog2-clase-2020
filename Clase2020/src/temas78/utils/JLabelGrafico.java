@@ -17,38 +17,42 @@ public class JLabelGrafico extends JLabel {
 	 * @param args	No utilizado
 	 */
 	public static void main(String[] args) {
-		JFrame f = new JFrame( "Prueba JLabelGraficoAjustado" );
+		JFrame f = new JFrame( "Prueba JLabelGrafico" );
 		f.setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
+		f.setLocation( 2000, 100 );   // Si se quiere cambiar la posición
 		f.getContentPane().setLayout( null );
-		JLabelGrafico label = new JLabelGrafico( "/tema3/img/coche.png", 100, 100 );
-		label.setLocation( 200, 100 );
+		JLabel label = new JLabel( new ImageIcon( "src/tema3/img/coche.png" ) );
+		label.setBounds( 0, 0, 150, 150 );
+		JLabelGrafico labelGrafico = new JLabelGrafico( "/tema3/img/coche.png", 100, 100 );
+		labelGrafico.setLocation( 400, 100 );
 			// TODO probar este 300, 300 con diferentes tamaños. Si x<=0 ajusta el ancho y si es y<=0 ajusta el alto
 		f.setSize( 600, 400 );
-		f.add( label, BorderLayout.CENTER );
+		f.add( label );  // f.add es una simplificación de f.getContentPane().add  (es lo mismo)
+		f.add( labelGrafico );
 		f.setVisible( true );
 		try { Thread.sleep( 5000 ); } catch (Exception e) {}  // Espera 5 segundos
 		for (int rot=0; rot<=200; rot++ ) {
-			label.setRotacion( rot*Math.PI/100 );
+			labelGrafico.setRotacion( rot*Math.PI/100 );
 			try { Thread.sleep( 20 ); } catch (Exception e) {}  // Espera dos décimas entre rotación y rotación
 		}
 		for (int op=-100; op<=100; op++ ) {
-			label.setOpacidad( Math.abs(op*0.01f) );
+			labelGrafico.setOpacidad( Math.abs(op*0.01f) );
 			try { Thread.sleep( 20 ); } catch (Exception e) {}  // Espera dos décimas entre cambio de transparencias
 		}
 		for (int op=0; op<99; op++ ) {
-			label.setSize( label.getAnchuraObjeto()-1, label.getAlturaObjeto()-1 );
+			labelGrafico.setSize( labelGrafico.getAnchuraObjeto()-1, labelGrafico.getAlturaObjeto()-1 );
 			try { Thread.sleep( 20 ); } catch (Exception e) {}  // Espera dos décimas entre cambio de tamaño
 		}
 		for (int op=0; op<200; op++ ) {
-			label.setSize( label.getAnchuraObjeto()+1, label.getAlturaObjeto()+1 );
+			labelGrafico.setSize( labelGrafico.getAnchuraObjeto()+1, labelGrafico.getAlturaObjeto()+1 );
 			try { Thread.sleep( 20 ); } catch (Exception e) {}  // Espera dos décimas entre cambio de tamaño
 		}
 		for (int op=0; op<100; op++ ) {
-			label.setSize( label.getAnchuraObjeto()-1, label.getAlturaObjeto() );
+			labelGrafico.setSize( labelGrafico.getAnchuraObjeto()-1, labelGrafico.getAlturaObjeto() );
 			try { Thread.sleep( 20 ); } catch (Exception e) {}  // Espera dos décimas entre aplastamiento de tamaño
 		}
 		for (int rot=0; rot<=200; rot++ ) {
-			label.setRotacion( rot*Math.PI/100 );
+			labelGrafico.setRotacion( rot*Math.PI/100 );
 			try { Thread.sleep( 20 ); } catch (Exception e) {}  // Espera dos décimas entre rotación y rotación
 		}
 	}
