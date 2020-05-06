@@ -31,7 +31,7 @@ public class EjemploAnimacionBalonJLabel extends JFrame {
 	public EjemploAnimacionBalonJLabel() {
 		// Configuración de ventana
 		setSize( 1000, 800 );
-		// setLocation( 2000, 50 );  // Si queremos cambiar la posición
+		setLocation( 2000, 50 );  // Si queremos cambiar la posición
 		setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
 		// Crear comps y conts
 		// (posibilidad 1) Acceder como fichero
@@ -53,7 +53,7 @@ public class EjemploAnimacionBalonJLabel extends JFrame {
 	}
 	
 	// Versión 1 - movimiento sencillo solo en x (horizontal)
-	private void mueveElBalon1() {
+	public void mueveElBalon1() {
 		System.out.println( "Prueba 1 - movimiento sencillo");
 		int xBalon = 0;
 		int xFinBalon = 700;
@@ -67,7 +67,7 @@ public class EjemploAnimacionBalonJLabel extends JFrame {
 	}
 	
 	// Versión 2 - Con velocidad (decreciente)
-	private void mueveElBalon2() {
+	public void mueveElBalon2() {
 		System.out.println( "Prueba 2 - velocidad decreciente");
 		double xBalon = 0;
 		double yBalon = 500;
@@ -86,7 +86,7 @@ public class EjemploAnimacionBalonJLabel extends JFrame {
 	}
 
 	// Versión 3 - con velocidad vertical y horizontal
-	private void mueveElBalon3() {
+	public void mueveElBalon3() {
 		System.out.println( "Prueba 3 - velocidad vertical y horizontal");
 		double xBalon = 0;
 		double yBalon = 500;
@@ -125,7 +125,7 @@ public class EjemploAnimacionBalonJLabel extends JFrame {
 	boolean pausa = false;
 	// Con eventos
 	// 1.- Al hacer click el balón salte
-	private void mueveElBalon4() {
+	public void mueveElBalon4() {
 		System.out.println( "Prueba 4 - salta con click");
 		// Escuchadores (normalmente se hace en el constructor)
 		// 1.- Ratón  (balón salta con click)

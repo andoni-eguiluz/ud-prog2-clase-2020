@@ -53,10 +53,22 @@ public class Pong {
 	private Rectangulo pala1;          // Pala izquierda del juego (jugador 1)
 	private Rectangulo pala2;          // Pala derecha del juego (jugador 2)
 
+	/** Devuelve la ventana gráfica del juego. Si no está inicializada, la crea
+	 * @return	Ventana gráfica actual del juego
+	 */
+	public VentanaGrafica getVentanaGrafica() {
+		if (vent==null) {
+			init();
+		}
+		return vent;
+	}
+	
 	/** Lanza una ventana gráfica e inicia el juego interactivo de Pong en ella
 	 */
 	public void jugar() {
-		init();
+		if (vent==null) {
+			init();
+		}
 		juego();
 	}
 	

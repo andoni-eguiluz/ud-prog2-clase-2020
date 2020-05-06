@@ -34,7 +34,7 @@ public class VentanaConEventoDeWindow extends JFrame {
 		
 		// 1.- Configuración de la ventana
 		this.setDefaultCloseOperation( JFrame.DO_NOTHING_ON_CLOSE );   // hace un ventana.dispose() cuando el usuario la cierra
-		this.setLocation( 2100, 100 );  // Coordenada de origen de la ventana con respecto al escritorio  (absoluta)
+		// this.setLocation( 2100, 100 );  // Coordenada de origen de la ventana con respecto al escritorio  (absoluta)
 
 		// 2.- Creación de contenedores (paneles) y componentes
 		JPanel panelInferior = new JPanel();  // Por defecto en un panel FlowLayout
