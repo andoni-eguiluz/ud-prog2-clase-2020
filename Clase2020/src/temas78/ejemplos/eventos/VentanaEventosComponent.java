@@ -22,48 +22,49 @@ public class VentanaEventosComponent extends JFrame {
 	// NO STATIC
 	
 	private JTextArea taTexto;
+	private JPanel pCentral;
+	private JLabel lFoto;
 	public VentanaEventosComponent() {
 		// Formato de la ventana
 		this.setTitle( "Mi ventana" );
 		setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
 		setSize( 640, 480 );
-		setLocation( 100, 100 );
+		// setLocation( 3000, 100 );  // Cambiar posición en pantalla
 		
 		// Crear componentes
 		taTexto = new JTextArea( "", 5, 40 );
-		JLabel lFoto = new JLabel( new ImageIcon( VentanaEventosComponent.class.getResource( "/tema3/img/balon.png") ) ); // Opción 1: recurso (ventaja: se puede empaquetar en un jar)
+		lFoto = new JLabel( new ImageIcon( VentanaEventosComponent.class.getResource( "/tema3/img/balon.png") ) ); // Opción 1: recurso (ventaja: se puede empaquetar en un jar)
 		// JLabel lFoto = new JLabel( new ImageIcon("src/tema3/img/balon.png") );  // Opción 2: fichero - solo funciona si existe el fichero en el disco en la ruta correspondiente
 		JButton bBorrar = new JButton( "Borrar texto" );
 		JButton bAceptar = new JButton( "Acabar" );
 		
 		// Crear contenedores
 		JPanel pInferior = new JPanel();
-		JPanel pCentral = new JPanel();
+		pCentral = new JPanel();
 		
 		// Asignar formatos (layouts)
 		pCentral.setLayout( null );  // Nulo para mover la imagen libremente
+		pCentral.setBackground( Color.YELLOW );
+		pCentral.setBorder( BorderFactory.createLineBorder( Color.BLUE, 2 ) );
 		
 		// Asignar componentes a contenedores
 		getContentPane().add( new JScrollPane(taTexto), BorderLayout.NORTH );
 		pCentral.add( lFoto );
 		getContentPane().add( pCentral, BorderLayout.CENTER );
-		lFoto.setLocation( 0, 0 );  // La foto en la esquina del panel central
+		pCentral.setPreferredSize( new Dimension( 600, 400 ) );
 		lFoto.setSize( 50, 50 );  // Tamaño de la foto: OJO - si no se indica la foto no se ve (por defecto el tamaño es 0 y el layout de este panel es nulo)
 		pInferior.add( bAceptar );
 		pInferior.add( bBorrar );
 		getContentPane().add( pInferior, BorderLayout.SOUTH );
 		
 		// Asociar gestores de eventos a componentes
-		pCentral.addComponentListener( new ComponentAdapter() {
+		pCentral.addComponentListener( new ComponentAdapter() {  // Todos los Listener con >1 método tienen clase asociada Adapter con código vacío
 			@Override
 			public void componentResized(ComponentEvent e) {
-				System.out.println( lFoto.getWidth() + "," + lFoto.getHeight() );
+				// System.out.println( "Resized " + pCentral.getWidth() + " , " + pCentral.getHeight() );
+				lFoto.setLocation( pCentral.getWidth()/2 - lFoto.getWidth()/2, pCentral.getHeight()/2 - lFoto.getHeight()/2);
 			}
 		});
-	}
-	
-	private void centrarBalon() {
-		
 	}
 	
 }

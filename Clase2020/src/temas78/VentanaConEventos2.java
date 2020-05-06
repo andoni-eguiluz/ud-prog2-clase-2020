@@ -30,6 +30,8 @@ public class VentanaConEventos2 extends JFrame {
 	
 	private boolean cierreAceptar;  // true si se cierra con aceptar y false si se cierra con cancelar
 	
+	private JFrame ventanaAAbrirTrasCerrarEsta;  // Ventana a "devolver" tras que se cierre esta
+	
 	public VentanaConEventos2( String titulo ) {
 		super( titulo );  // Llama al constructor original de JFrame (clase padre)
 		
@@ -70,6 +72,9 @@ public class VentanaConEventos2 extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				cierreAceptar = false;
 				dispose();
+				if (ventanaAAbrirTrasCerrarEsta!=null) {
+					ventanaAAbrirTrasCerrarEsta.setVisible( true );
+				}
 			}
 		} );
 		bAceptar.addActionListener( new ActionListener() {  // Sintaxis clase anónima   new Interfaz() { ... } // new Clase() { ... }
@@ -77,6 +82,9 @@ public class VentanaConEventos2 extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				cierreAceptar = true;
 				dispose();
+				if (ventanaAAbrirTrasCerrarEsta!=null) {
+					ventanaAAbrirTrasCerrarEsta.setVisible( true );
+				}
 			}
 		});
 		bBorrar.addActionListener( new ActionListener() {
@@ -93,6 +101,13 @@ public class VentanaConEventos2 extends JFrame {
 	 */
 	public boolean getInfoCierre() {
 		return cierreAceptar;
+	}
+	
+	/** Activa la posibilidad de que al cerrarse esta ventana se visualice otra
+	 * @param vent	Ventana a visualizar tras cerrarse esta (si es null, no se hará)
+	 */
+	public void setVentanaAAbrirTrasCerrarEsta( JFrame vent ) {
+		ventanaAAbrirTrasCerrarEsta = vent;
 	}
 
 }
