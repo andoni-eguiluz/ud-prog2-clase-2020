@@ -21,7 +21,7 @@ public class EjemploConsultaColorPixel {
 		}
 		JFrame v = new JFrame();
 		v.setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
-		JLabel coche = new JLabel( new ImageIcon( EjemploConsultaColorPixel.class.getResource( "/img/coches/coche.png" ) ) );
+		JLabel coche = new JLabel( new ImageIcon( EjemploConsultaColorPixel.class.getResource( "/tema3/img/coche.png" ) ) );
 		v.add( coche, BorderLayout.CENTER );
 		v.setSize( 600, 400 );
 		coche.addMouseMotionListener( new MouseMotionListener() {

@@ -36,11 +36,12 @@ public class EjemploEditorJTable extends JFrame {
 	}
 }
 
+@SuppressWarnings("serial")
 class MixerModel extends AbstractTableModel {
 
 	String headers[] = { "Track", "Start", "Stop", "Left Volume", "Right Volume" };
 
-	Class columnClasses[] = { String.class, String.class, String.class, Volume.class, Volume.class };
+	Class<?> columnClasses[] = { String.class, String.class, String.class, Volume.class, Volume.class };
 
 	Object data[][] = { { "Bass", "0:00:000", "1:00:000", new Volume(56), new Volume(56) },
 			{ "Strings", "0:00:000", "0:52:010", new Volume(72), new Volume(52) },
@@ -55,7 +56,7 @@ class MixerModel extends AbstractTableModel {
 		return headers.length;
 	}
 
-	public Class getColumnClass(int c) {
+	public Class<?> getColumnClass(int c) {
 		return columnClasses[c];
 	}
 

@@ -4,6 +4,10 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+/** Ejemplo limitación de teclas en JTextField
+ * @author andoni.eguiluz at ingenieria.deusto.es
+ *
+ */
 public class LimitacionTeclasEnTextField {
 	
 	/** Método principal
