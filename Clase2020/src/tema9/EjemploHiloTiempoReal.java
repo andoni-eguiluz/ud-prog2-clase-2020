@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-import tema3.pong.Pong;
 import temas78.ejemplos.layouts.EjemploAnimacionBalonJLabel;
 
 public class EjemploHiloTiempoReal {

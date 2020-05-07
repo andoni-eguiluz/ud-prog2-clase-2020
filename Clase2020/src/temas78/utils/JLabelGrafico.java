@@ -64,6 +64,7 @@ public class JLabelGrafico extends JLabel {
 	protected int alturaObjeto;    // Altura definida del objeto en pixels
 	protected double radsRotacion; // Rotación del objeto en radianes
 	protected float opacidad;      // Opacidad del objeto (0.0f a 0.1f)
+	protected double zoom = 1.0;   // 1.0 = 100% zoom  (0.1 = 10%, 10.0 = 1000% ...)
 	protected BufferedImage imagenObjeto;  // imagen para el escalado
 	private static final long serialVersionUID = 1L;  // para serializar
 
@@ -74,10 +75,23 @@ public class JLabelGrafico extends JLabel {
 	 * @param altura	Altura del gráfico en píxels (si es <= 0 ocupa todo el alto de la imagen original)
 	 */
 	public JLabelGrafico( String nombreImagenObjeto, int anchura, int altura ) {
+		this( nombreImagenObjeto, anchura, altura, 0.0, 1.0f );
+	}
+	
+	/** Crea un nuevo JLabel gráfico.<br>
+	 * Si no existe el fichero de imagen, se crea un rectángulo blanco con borde rojo
+	 * @param nombreImagenObjeto	Nombre fichero donde está la imagen del objeto. Puede ser también un nombre de recurso desde el paquete de esta clase.
+	 * @param anchura	Anchura del gráfico en píxels (si es <= 0 ocupa todo el ancho de la imagen original)
+	 * @param altura	Altura del gráfico en píxels (si es <= 0 ocupa todo el alto de la imagen original)
+	 * @param rotacion	Rotación del objeto (en radianes)
+	 * @param opacidad	Opacidad del objeto (0.0f transparente a 1.0f opaco)
+	 */
+	public JLabelGrafico( String nombreImagenObjeto, int anchura, int altura, double rotacion, float opacidad ) {
 		setName( nombreImagenObjeto );
-		opacidad = 1.0f;
 		setImagen( nombreImagenObjeto ); // Cargamos el icono
 		setSize( anchura, altura );
+		setRotacion(rotacion);
+		setOpacidad(opacidad);
 	}
 	
 	@Override
@@ -163,7 +177,24 @@ public class JLabelGrafico extends JLabel {
 		this.opacidad = opacidad;
 		repaint(); // Si no repintamos aquí Swing no sabe que ha cambiado el dibujo
 	}
-
+	
+	/** Cambia el zoom por el zoom indicado
+	 * @param zoom	Valor nuevo de zoom, positivo (0.1 = 10%, 1.0 = 100%, 2.0 = 200%...)
+	 */
+	public void setZoom( double zoom ) {
+		if (zoom>0.0) {
+			this.zoom = zoom;
+			repaint();
+		}
+	}
+	
+	/** Devuelve el zoom actual
+	 * @return	Zoom actual
+	 */
+	public double getZoom() {
+		return zoom;
+	}
+	
 	/** Actualiza la posición del objeto
 	 * @param x	Coordenada x (doble) - se redondea al píxel más cercano
 	 * @param y	Coordenada y (doble) - se redondea al píxel más cercano
@@ -181,25 +212,18 @@ public class JLabelGrafico extends JLabel {
 			g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 			g2.setRenderingHint(RenderingHints.KEY_RENDERING,RenderingHints.VALUE_RENDER_QUALITY);
 			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);	
-			int anc = anchuraObjeto;
-			int alt = alturaObjeto;
-			int iniX = 0;
-			int iniY = 0;
-			if (anc<=0) {
-				anc = getWidth();
-			} else {
-				iniX = (getWidth() - anc) / 2;
-			}
-			if (alt<=0) {
-				alt = getHeight();
-			} else {
-				iniY = (getHeight() - alt) / 2;
-			}
+			// Zoom
+	        int anchoDibujado = (int)Math.round(anchuraObjeto*zoom);  // Calcular las coordenadas de dibujado con el zoom, siempre centrado en el label
+	        int altoDibujado = (int)Math.round(alturaObjeto*zoom);
+	        int difAncho = (getWidth() - anchoDibujado) / 2;  // Offset x para centrar
+	        int difAlto = (getHeight() - altoDibujado) / 2;     // Offset y para centrar
 			// Rotación
 			g2.rotate( radsRotacion, getWidth()/2, getHeight()/2 );  // Incorporar al gráfico la rotación definida
 			// Transparencia
 			g2.setComposite(AlphaComposite.getInstance( AlphaComposite.SRC_OVER, opacidad ) ); // Incorporar la transparencia definida
-	        g2.drawImage(imagenObjeto, iniX, iniY, anc, alt, null);
+	        g2.drawImage(imagenObjeto, difAncho, difAlto, anchoDibujado, altoDibujado, null);  // Dibujar la imagen con el tamaño calculado tras aplicar el zoom
+	        // Deshacer rotación
+	        g2.rotate( Math.PI*2-radsRotacion, getWidth()/2, getHeight()/2 );
 		}
 	}
 
