@@ -10,6 +10,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 /** Clase ventana sencilla para dibujado directo a la ventana
+ * v 1.1.6 - Incorpora método para dibujar texto centrado
  * v 1.1.5 - Incorpora método para cambiar el tipo de letra de la línea de mensajes, método para consultar el mensaje actual
  * v 1.1.4 - Incorpora métodos para pedir datos desde teclado
  */
@@ -144,6 +145,7 @@ public class VentanaGrafica {
 	}
 	
 	// Parte estática de datos comunes 
+	// Métodos estáticos
 		
 		private static int codTeclaTecleada = 0;
 		private static int codTeclaActualmentePulsada = 0;
@@ -185,6 +187,7 @@ public class VentanaGrafica {
 	private BufferedImage buffer; // Buffer gráfico de la ventana
 	private Graphics2D graphics;  // Objeto gráfico sobre el que dibujar (del buffer)
 	private Point pointPressed;   // Coordenada pulsada de ratón (si existe)
+	private boolean botonIzquierdo; // Información de si el último botón pulsado es izquierdo o no lo es
 	private Point pointMoved;     // Coordenada pasada de ratón (si existe)
 	private Point pointMovedPrev; // Coordenada pasada anterior de ratón (si existe)
 	private boolean dibujadoInmediato = true; // Refresco de dibujado en cada orden de dibujado
@@ -241,6 +244,7 @@ public class VentanaGrafica {
 			public void mousePressed(MouseEvent e) {
 				synchronized (lock) {
 					pointPressed = e.getPoint();
+					botonIzquierdo = (e.getButton() == MouseEvent.BUTTON1);
 				}
 			}
 		});
@@ -255,6 +259,7 @@ public class VentanaGrafica {
 			public void mouseDragged(MouseEvent e) {
 				synchronized (lock) {
 					pointPressed = e.getPoint();
+					botonIzquierdo = (e.getButton() == MouseEvent.BUTTON1);
 				}
 			}
 		});
@@ -327,6 +332,13 @@ public class VentanaGrafica {
 		synchronized (lock) {
 			return pointPressed;
 		}
+	}
+
+	/** Devuelve la información de si el último botón pulsado es izquierdo o no lo es
+	 * @return	true si el último botón de ratón pulsado es el izquierdo
+	 */
+	public boolean isBotonIzquierdo() {
+		return botonIzquierdo;
 	}
 	
 	/** Devuelve el punto donde está el ratón en este momento
@@ -462,20 +474,6 @@ public class VentanaGrafica {
 		dibujaRect( x, y, anchura, altura, grosor, Color.white );
 	}
 	
-	/** Dibuja un círculo en la ventana
-	 * @param x	Coordenada x del centro del círculo
-	 * @param y	Coordenada y del centro del círculo
-	 * @param radio	Radio del círculo (en píxels) 
-	 * @param grosor	Grueso del círculo (en píxels)
-	 * @param color  	Color del círculo
-	 */
-	public void dibujaCirculo( double x, double y, double radio, float grosor, Color color ) {
-		graphics.setColor( color );
-		graphics.setStroke( new BasicStroke( grosor ));
-		graphics.drawOval( (int)Math.round(x-radio), (int)Math.round(y-radio), (int)Math.round(radio*2), (int)Math.round(radio*2) );
-		if (dibujadoInmediato) repaint();
-	}
-	
 	/** Dibuja un círculo relleno en la ventana
 	 * @param x	Coordenada x del centro del círculo
 	 * @param y	Coordenada y del centro del círculo
@@ -489,6 +487,20 @@ public class VentanaGrafica {
 		graphics.setColor( colorR );
 		graphics.fillOval( (int)Math.round(x-radio), (int)Math.round(y-radio), (int)Math.round(radio*2), (int)Math.round(radio*2) );
 		graphics.setColor( colorL );
+		graphics.drawOval( (int)Math.round(x-radio), (int)Math.round(y-radio), (int)Math.round(radio*2), (int)Math.round(radio*2) );
+		if (dibujadoInmediato) repaint();
+	}
+	
+	/** Dibuja un círculo en la ventana
+	 * @param x	Coordenada x del centro del círculo
+	 * @param y	Coordenada y del centro del círculo
+	 * @param radio	Radio del círculo (en píxels) 
+	 * @param grosor	Grueso del círculo (en píxels)
+	 * @param color  	Color del círculo
+	 */
+	public void dibujaCirculo( double x, double y, double radio, float grosor, Color color ) {
+		graphics.setColor( color );
+		graphics.setStroke( new BasicStroke( grosor ));
 		graphics.drawOval( (int)Math.round(x-radio), (int)Math.round(y-radio), (int)Math.round(radio*2), (int)Math.round(radio*2) );
 		if (dibujadoInmediato) repaint();
 	}
@@ -674,8 +686,24 @@ public class VentanaGrafica {
 		if (dibujadoInmediato) repaint();
 	}
 	
-	
-	
+	/** Dibuja un texto en la ventana, centrado en un rectángulo dado
+	 * @param x	Coordenada x de la esquina superior izquierda del rectángulo
+	 * @param y	Coordenada y de la esquina superior izquierda del rectángulo
+	 * @param anchura
+	 * @param altura
+	 * @param texto	Texto a dibujar 
+	 * @param font	Tipo de letra con el que dibujar el texto
+	 * @param color	Color del texto
+	 */
+	public void dibujaTextoCentrado( double x, double y, double anchura, double altura, String texto, Font font, Color color ) {
+		Rectangle2D rect = graphics.getFontMetrics(font).getStringBounds(texto, graphics);  // Dimensiones del texto que se va a pintar
+		graphics.setColor( color );
+		graphics.setFont( font );
+		double xCalc = x + anchura/2.0 - rect.getWidth()/2.0;
+		double yCalc = y + altura - rect.getHeight()/2.0;
+		graphics.drawString( texto, (float)xCalc, (float)yCalc );
+		if (dibujadoInmediato) repaint();
+	}
 	
 	
 	/** Devuelve el objeto de gráfico sobre el que pintar, correspondiente al 
