@@ -29,9 +29,10 @@ public class EjemploAnimacionBalonJLabel extends JFrame {
 	JPanel pFondo;  // Panel de fondo
 	JLabel lBalon;  // JLabel a mover en ese panel
 	public EjemploAnimacionBalonJLabel() {
+		setIconImage( new ImageIcon( "/src/tema3/img/balon.png").getImage() );
 		// Configuración de ventana
 		setSize( 1000, 800 );
-		setLocation( 2000, 50 );  // Si queremos cambiar la posición
+		//setLocation( 2000, 50 );  // Si queremos cambiar la posición
 		setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
 		// Crear comps y conts
 		// (posibilidad 1) Acceder como fichero

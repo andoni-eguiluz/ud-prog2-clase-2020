@@ -19,7 +19,7 @@ public class JLabelGrafico extends JLabel {
 	public static void main(String[] args) {
 		JFrame f = new JFrame( "Prueba JLabelGrafico" );
 		f.setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
-		f.setLocation( 2000, 100 );   // Si se quiere cambiar la posición
+		// f.setLocation( 2000, 100 );   // Si se quiere cambiar la posición
 		f.getContentPane().setLayout( null );
 		JLabel label = new JLabel( new ImageIcon( "src/tema3/img/coche.png" ) );
 		label.setBounds( 0, 0, 150, 150 );
