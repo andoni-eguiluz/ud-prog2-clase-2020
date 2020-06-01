@@ -7,6 +7,7 @@ import javax.swing.*;
 
 import temas78.utils.JLabelGrafico;
 
+@SuppressWarnings("serial")
 public class EjemploMuchosPanelesConScroll extends JFrame {
 
 	public static void main(String[] args) {
@@ -32,25 +33,22 @@ public class EjemploMuchosPanelesConScroll extends JFrame {
 	}
 	
 	// Suponemos que tiene filas con BoxLayout y columnas también con BoxLayout. La marca de dónde vamos añadiendo la llevan estas variables:
-	private int numFila;
-	private int numCol;
+	private int numCol;  // En qué columna vamos añadiendo
 	private final int NUM_COLS = 5;  // 5 columnas en cada fila
 	private JPanel pEnCurso = null;  // Panel que se está añadiendo 
 	public void empezarPanel() {
-		numFila = 0;
 		numCol = 4; // Para que al empezar se empiece en fila nueva
 		pPrincipal.removeAll();  // Quita todo para empezar "limpio"
 	}
 	public void anyadirDato( Dato dato ) {
-		numCol++;
-		if (numCol==NUM_COLS) {  // Si está llena la fila se empieza fila nueva
+		numCol++;  // Incremento la columna en la que se añade
+		if (numCol==NUM_COLS) {  // Si está llena la fila (última columna) se empieza fila nueva
 			numCol = 0;
-			numFila++;
 			pEnCurso = new JPanel();
 			pEnCurso.setLayout(new BoxLayout(pEnCurso,BoxLayout.X_AXIS));
 			pPrincipal.add( pEnCurso );
 		}
-		pEnCurso.add( new MiPanel( dato.titulo, dato.texto ) );
+		pEnCurso.add( new MiPanel( dato.titulo, dato.texto ) );  // Añadimos panel
 	}
 	public void acabarPanel() {
 		pPrincipal.revalidate();  // Rehace la visual de todo el panel con el montaje
