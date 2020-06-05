@@ -29,13 +29,6 @@ public class MiJTable extends JTable {
 		super(modelo);
     	// Fijar tamaño preferido de la tabla
         setPreferredScrollableViewportSize(new Dimension(500, 70));
-        // [02] Asignar renderers de alineación horizontal
-        getColumn("Nombre").setCellRenderer( rendererDerecha );
-        getColumn("Deporte").setCellRenderer( rendererCentrado );
-        // [03] Asignar anchuras iniciales
-		getColumn( "Apellidos" ).setMinWidth( 200 );
-		getColumn( "Deporte" ).setPreferredWidth( 100 );
-		getColumn( "Años" ).setPreferredWidth( 50 );
 	}
 	
 	public void setModel( TableModel t ) {
@@ -70,6 +63,7 @@ public class MiJTable extends JTable {
 
     	// Crear la tabla y el scrollpane
     	final MiJTable tabla = new MiJTable( datos );
+    	ajustarColumnas( tabla );
         JScrollPane scrollPane = new JScrollPane( tabla );
 
         //Crear e inicializar la ventana con la tabla central
@@ -130,6 +124,16 @@ public class MiJTable extends JTable {
         // Ajusta el tamaño de la ventana y la muestra
         frame.pack();
         frame.setVisible(true);
+    }
+    
+    private static void ajustarColumnas( MiJTable tabla ) {
+        // Asignar renderers de alineación horizontal
+        tabla.getColumn("Nombre").setCellRenderer( rendererDerecha );
+        tabla.getColumn("Deporte").setCellRenderer( rendererCentrado );
+        // Asignar anchuras iniciales
+        tabla.getColumn( "Apellidos" ).setMinWidth( 200 );
+        tabla.getColumn( "Deporte" ).setPreferredWidth( 100 );
+        tabla.getColumn( "Años" ).setPreferredWidth( 50 );
     }
 
     public static void main(String[] args) {
