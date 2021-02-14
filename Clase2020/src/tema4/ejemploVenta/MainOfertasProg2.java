@@ -1,6 +1,7 @@
 package tema4.ejemploVenta;
 
 import java.io.File;
+import java.io.IOException;
 
 import tema3.VentanaConsolaConBotones;
 
@@ -16,7 +17,7 @@ public class MainOfertasProg2 {
 	/** Método principal - crea un sistema nuevo y lanza la interacción 
 	 * @param args	No utilizado
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		sistema = new OfertasProg2();
 		init();
 		interaccion();
@@ -36,7 +37,10 @@ public class MainOfertasProg2 {
 	}
 
 	// Interacción principal del sistema
-	private static void interaccion() {
+	private static void interaccion() throws IOException {
+		int x = 5;
+		int j = x/0;  // throw new ArithmeticException( "/ by zero" )
+		System.out.println( j );
 		ventana = new VentanaConsolaConBotones( "OfertasProg2 a su servicio" );
 		ventana.println( "Bienvenido/a a nuestra tienda virtual" );
 		String resp = null;

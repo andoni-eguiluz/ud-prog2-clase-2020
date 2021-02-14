@@ -7,6 +7,7 @@ import java.awt.event.*;
 import java.awt.geom.*;
 import java.awt.image.BufferedImage;
 import java.lang.reflect.InvocationTargetException;
+import java.net.URL;
 import java.util.*;
 
 /** Clase ventana sencilla para dibujado directo a la ventana
@@ -303,6 +304,12 @@ public class VentanaGrafica {
 			Thread.sleep( milis );
 		} catch (InterruptedException e) {
 		}
+	}
+	/** Espera hasta que ocurra un click completo de ratón
+	 */
+	public void esperaAClick() {
+		while (getRatonPulsado()==null && !estaCerrada()) {}  // Espera a pulsación...
+		while (getRatonPulsado()!=null && !estaCerrada()) {}  // ...y espera a suelta
 	}
 	/** Cierra la ventana (también ocurre cuando se pulsa el icono de cierre)
 	 */
@@ -799,6 +806,8 @@ public class VentanaGrafica {
 		private static volatile HashMap<String,ImageIcon> recursosGraficos = new HashMap<>();
 		
 	/** Carga una imagen de un fichero gráfico y la dibuja en la ventana. Si la imagen no puede cargarse, no se dibuja nada.
+	 * El recurso gráfico se busca en el paquete de esta clase o en la clase llamadora.
+	 * El recurso gráfico se carga en memoria, de modo que al volver a dibujar la misma imagen, no se vuelve a cargar ya de fichero
 	 * @param recursoGrafico	Nombre del fichero (path absoluto desde la carpeta raíz de clases del proyecto)  (p. ej. "/img/prueba.png")
 	 * @param centroX	Coordenada x de la ventana donde colocar el centro de la imagen 
 	 * @param centroY	Coordenada y de la ventana donde colocar el centro de la imagen
@@ -810,15 +819,7 @@ public class VentanaGrafica {
 	 */
 	public void dibujaImagen( String recursoGrafico, double centroX, double centroY, 
 			int anchuraDibujo, int alturaDibujo, double zoom, double radsRotacion, float opacity ) {
-		ImageIcon ii = recursosGraficos.get( recursoGrafico );
-		if (ii==null) {
-			try {
-				ii = new ImageIcon( VentanaGrafica.class.getResource( recursoGrafico ));
-			} catch (NullPointerException e) {
-				return;
-			}
-			recursosGraficos.put( recursoGrafico, ii );
-		}
+		ImageIcon ii = getRecursoGrafico(recursoGrafico); if (ii==null) return;
 		graphics.setRenderingHint(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BILINEAR); // Configuración para mejor calidad del gráfico escalado
 		graphics.setRenderingHint(RenderingHints.KEY_RENDERING,RenderingHints.VALUE_RENDER_QUALITY);
 		graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);	
@@ -836,6 +837,8 @@ public class VentanaGrafica {
 	}
 
 	/** Carga una imagen de un fichero gráfico y la dibuja en la ventana. Si la imagen no puede cargarse, no se dibuja nada.
+	 * El recurso gráfico se busca en el paquete de esta clase o en la clase llamadora.
+	 * El recurso gráfico se carga en memoria, de modo que al volver a dibujar la misma imagen, no se vuelve a cargar ya de fichero
 	 * @param recursoGrafico	Nombre del fichero (path absoluto desde la carpeta raíz de clases del proyecto)  (p. ej. "/img/prueba.png")
 	 * @param centroX	Coordenada x de la ventana donde colocar el centro de la imagen 
 	 * @param centroY	Coordenada y de la ventana donde colocar el centro de la imagen
@@ -845,17 +848,39 @@ public class VentanaGrafica {
 	 */
 	public void dibujaImagen( String recursoGrafico, double centroX, double centroY, 
 			double zoom, double radsRotacion, float opacity ) {
-		ImageIcon ii = recursosGraficos.get( recursoGrafico );
-		if (ii==null) {
-			try {
-				ii = new ImageIcon( VentanaGrafica.class.getResource( recursoGrafico ));
-			} catch (NullPointerException e) {
-				return;
-			}
-			recursosGraficos.put( recursoGrafico, ii );
-		}
+		ImageIcon ii = getRecursoGrafico(recursoGrafico); if (ii==null) return;
 		dibujaImagen( recursoGrafico, centroX, centroY, ii.getIconWidth(), ii.getIconHeight(), zoom, radsRotacion, opacity);
 	}
+		// Intenta cargar el recurso gráfico del mapa interno, de la clase actual, o de la clase llamadora. Devuelve null si no se ha podido hacer
+		private ImageIcon getRecursoGrafico( String recursoGrafico ) {
+			ImageIcon ii = recursosGraficos.get( recursoGrafico );
+			if (ii==null) {
+				try {
+					ii = new ImageIcon( VentanaGrafica.class.getResource( recursoGrafico ));
+					recursosGraficos.put( recursoGrafico, ii );
+				} catch (NullPointerException e) {  // Mirar si está en la clase llamadora en lugar de en la ventana gráfica
+					StackTraceElement[] stElements = Thread.currentThread().getStackTrace();
+					for (int i=1; i<stElements.length; i++) {
+						StackTraceElement ste = stElements[i];
+						if ( !ste.getClassName().endsWith("VentanaGrafica") ) {  // Busca la clase llamadora a VentanaGrafica y busca ahí el recurso
+							try {
+								Class<?> c = Class.forName( ste.getClassName() );
+								URL url = c.getResource( recursoGrafico );
+								if (url==null) return null;
+								ii = new ImageIcon( url );
+								recursosGraficos.put( recursoGrafico, ii );
+								return ii;
+							} catch (ClassNotFoundException e1) {
+								return null;
+							}
+						}
+					}
+					return null;
+				}			
+			}
+			return ii;
+		}
+	
 	
 		private transient JPanel pBotonera = null;
 	/** Añade un botón de acción a la botonera superior
@@ -888,6 +913,20 @@ public class VentanaGrafica {
 	 */
 	public void removeComponentListener( ComponentListener l ) {
 		panel.removeComponentListener( l );
+	}
+	
+	/** Añade un escuchador de ventana a la ventana
+	 * @param l	Escuchador a añadir
+	 */
+	public void addWindowListener( WindowListener l ) {
+		ventana.addWindowListener( l );
+	}
+	
+	/** Elimina un escuchador de ventana de la ventana
+	 * @param l	Escuchador a eliminar
+	 */
+	public void removeWindowListener( WindowListener l ) {
+		ventana.removeWindowListener( l );
 	}
 
 		// Variable local para cuadro de texto

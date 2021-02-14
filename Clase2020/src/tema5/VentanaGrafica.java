@@ -7,6 +7,7 @@ import java.awt.event.*;
 import java.awt.geom.*;
 import java.awt.image.BufferedImage;
 import java.lang.reflect.InvocationTargetException;
+import java.net.URL;
 import java.util.*;
 
 /** Clase ventana sencilla para dibujado directo a la ventana
@@ -15,12 +16,12 @@ import java.util.*;
  * v 1.1.4 - Incorpora métodos para pedir datos desde teclado
  */
 public class VentanaGrafica {
-
+	
 	// ====================================================
 	//   Parte estática - pruebas de funcionamiento
 	// ====================================================
-	
-		private static VentanaGrafica v;
+
+	private static VentanaGrafica v;
 	/** Método main de prueba de la clase
 	 * @param args	No utilizado
 	 */
@@ -34,8 +35,8 @@ public class VentanaGrafica {
 		});
 		v.setDibujadoInmediato( false );
 		Object opcion = JOptionPane.showInputDialog( v.getJFrame(), "¿Qué quieres probar?",
-			"Selección de test", JOptionPane.QUESTION_MESSAGE, null, 
-			new String[] { "Movimiento", "Giros", "Tiro", "Texto" }, "Movimiento" );
+				"Selección de test", JOptionPane.QUESTION_MESSAGE, null, 
+				new String[] { "Movimiento", "Giros", "Tiro", "Texto" }, "Movimiento" );
 		if ( "Movimiento".equals( opcion ) ) {
 			movimiento();
 		} else if ( "Giros".equals( opcion ) ) {
@@ -128,29 +129,29 @@ public class VentanaGrafica {
 			v.setMensaje( "Vuelve a disparar!" );
 		}
 	
-	// Prueba 4: petición de texto en la ventana
-	private static void texto() {
-		v.setDibujadoInmediato( true );
-		v.dibujaImagen( "/img/UD-roller.jpg", 400, 300, 1.0, 0.0, 1.0f );
-		Font f = new Font( "Arial", Font.PLAIN, 30 );
-		String t1 = v.leeTexto( 100, 100, 200, 50, "Modifica texto", f, Color.magenta );
-		v.setMensaje( "Introduce texto" );
-		v.dibujaTexto( 100, 200, "Texto introducido: " + t1, f, Color.white );
-		v.setMensaje( "Introduce texto otra vez" );
-		t1 = v.leeTexto( 100, 300, 200, 50, "", f, Color.blue );
-		v.setMensaje( "Textos leídos." );
-		v.dibujaTexto( 100, 400, "Texto introducido: " + t1, f, Color.white );
-		v.espera( 5000 );
-		v.acaba();
-	}
-	
+		// Prueba 4: petición de texto en la ventana
+		private static void texto() {
+			v.setDibujadoInmediato( true );
+			v.dibujaImagen( "/img/UD-roller.jpg", 400, 300, 1.0, 0.0, 1.0f );
+			Font f = new Font( "Arial", Font.PLAIN, 30 );
+			String t1 = v.leeTexto( 100, 100, 200, 50, "Modifica texto", f, Color.magenta );
+			v.setMensaje( "Introduce texto" );
+			v.dibujaTexto( 100, 200, "Texto introducido: " + t1, f, Color.white );
+			v.setMensaje( "Introduce texto otra vez" );
+			t1 = v.leeTexto( 100, 300, 200, 50, "", f, Color.blue );
+			v.setMensaje( "Textos leídos." );
+			v.dibujaTexto( 100, 400, "Texto introducido: " + t1, f, Color.white );
+			v.espera( 5000 );
+			v.acaba();
+		}
+		
 	// Parte estática de datos comunes 
 	// Métodos estáticos
 		
-		private static int codTeclaTecleada = 0;
-		private static int codTeclaActualmentePulsada = 0;
-		private static HashSet<Integer> teclasPulsadas = new HashSet<Integer>();
-		private static boolean controlActivo = false;
+	private static int codTeclaTecleada = 0;
+	private static int codTeclaActualmentePulsada = 0;
+	private static HashSet<Integer> teclasPulsadas = new HashSet<Integer>();
+	private static boolean controlActivo = false;
 	// Inicializa el control de teclado
 	private static void init() {
 		KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
@@ -174,25 +175,25 @@ public class VentanaGrafica {
 	static {  // Inicializar en la carta de la clase
 		init();
 	}
-	
+
 	
 	// ====================================================
 	//   Parte no estática - objeto VentanaGrafica
 	// ====================================================
 	
-	private JFrame ventana;       // Ventana que se visualiza
-	private boolean cerrada;      // Lógica de cierre (false al inicio)
-	private JPanel panel;         // Panel principal
-	private JLabel lMens;         // Etiqueta de texto de mensajes en la parte inferior
-	private BufferedImage buffer; // Buffer gráfico de la ventana
-	private Graphics2D graphics;  // Objeto gráfico sobre el que dibujar (del buffer)
-	private Point pointPressed;   // Coordenada pulsada de ratón (si existe)
+	private JFrame ventana;         // Ventana que se visualiza
+	private boolean cerrada;        // Lógica de cierre (false al inicio)
+	private JPanel panel;           // Panel principal
+	private JLabel lMens;           // Etiqueta de texto de mensajes en la parte inferior
+	private BufferedImage buffer;   // Buffer gráfico de la ventana
+	private Graphics2D graphics;    // Objeto gráfico sobre el que dibujar (del buffer)
+	private Point pointPressed;     // Coordenada pulsada de ratón (si existe)
 	private boolean botonIzquierdo; // Información de si el último botón pulsado es izquierdo o no lo es
-	private Point pointMoved;     // Coordenada pasada de ratón (si existe)
-	private Point pointMovedPrev; // Coordenada pasada anterior de ratón (si existe)
+	private Point pointMoved;       // Coordenada pasada de ratón (si existe)
+	private Point pointMovedPrev;   // Coordenada pasada anterior de ratón (si existe)
 	private boolean dibujadoInmediato = true; // Refresco de dibujado en cada orden de dibujado
 
-		private Object lock = new Object();  // Objeto de sincronización de hilos para el acceso como si no los hubiera
+		private Object lock = new Object();  // Tema de sincronización de hilos para el acceso como si no los hubiera
 	
 	/** Construye una nueva ventana gráfica con fondo blanco y la visualiza en el centro de la pantalla
 	 * @param anchura	Anchura en píxels (valor positivo) de la zona de pintado
@@ -304,6 +305,12 @@ public class VentanaGrafica {
 		} catch (InterruptedException e) {
 		}
 	}
+	/** Espera hasta que ocurra un click completo de ratón
+	 */
+	public void esperaAClick() {
+		while (getRatonPulsado()==null && !estaCerrada()) {}  // Espera a pulsación...
+		while (getRatonPulsado()!=null && !estaCerrada()) {}  // ...y espera a suelta
+	}
 	/** Cierra la ventana (también ocurre cuando se pulsa el icono de cierre)
 	 */
 	public void acaba() {
@@ -333,7 +340,7 @@ public class VentanaGrafica {
 			return pointPressed;
 		}
 	}
-
+	
 	/** Devuelve la información de si el último botón pulsado es izquierdo o no lo es
 	 * @return	true si el último botón de ratón pulsado es el izquierdo
 	 */
@@ -479,14 +486,14 @@ public class VentanaGrafica {
 	 * @param y	Coordenada y del centro del círculo
 	 * @param radio	Radio del círculo (en píxels) 
 	 * @param grosor	Grueso del círculo (en píxels)
-	 * @param colorL 	Color de la línea del círculo
-	 * @param colorR 	Color de relleno del círculo
+	 * @param color  	Color del círculo
+	 * @param colorRelleno  	Color de relleno del círculo
 	 */
-	public void dibujaCirculo( double x, double y, double radio, float grosor, Color colorL, Color colorR ) {
+	public void dibujaCirculo( double x, double y, double radio, float grosor, Color color, Color colorRelleno ) {
 		graphics.setStroke( new BasicStroke( grosor ));
-		graphics.setColor( colorR );
+		graphics.setColor( colorRelleno );
 		graphics.fillOval( (int)Math.round(x-radio), (int)Math.round(y-radio), (int)Math.round(radio*2), (int)Math.round(radio*2) );
-		graphics.setColor( colorL );
+		graphics.setColor( color );
 		graphics.drawOval( (int)Math.round(x-radio), (int)Math.round(y-radio), (int)Math.round(radio*2), (int)Math.round(radio*2) );
 		if (dibujadoInmediato) repaint();
 	}
@@ -700,11 +707,34 @@ public class VentanaGrafica {
 		graphics.setColor( color );
 		graphics.setFont( font );
 		double xCalc = x + anchura/2.0 - rect.getWidth()/2.0;
-		double yCalc = y + altura - rect.getHeight()/2.0;
+		double yCalc = y + altura - graphics.getFontMetrics(font).getDescent() - (altura - rect.getHeight())/2.0;
 		graphics.drawString( texto, (float)xCalc, (float)yCalc );
 		if (dibujadoInmediato) repaint();
 	}
-	
+
+	/** Dibuja un texto en la ventana, centrado en un rectángulo dado
+	 * @param x	Coordenada x de la esquina superior izquierda del rectángulo
+	 * @param y	Coordenada y de la esquina superior izquierda del rectángulo
+	 * @param anchura
+	 * @param altura
+	 * @param texto	Texto a dibujar 
+	 * @param font	Tipo de letra con el que dibujar el texto
+	 * @param color	Color del texto
+	 * @param ajustaSiMayor	true si se disminuye el texto hasta que quepa (si no cabe), false se dibuja con el tamaño indicado.
+	 */
+	public void dibujaTextoCentrado( double x, double y, double anchura, double altura, String texto, Font font, Color color, boolean ajustaSiMayor ) {
+		Rectangle2D rect = graphics.getFontMetrics(font).getStringBounds(texto, graphics);  // Dimensiones del texto que se va a pintar
+		while (rect.getWidth() > anchura || rect.getHeight() > altura) {
+			font = new Font( font.getName(), font.getStyle(), font.getSize() - 1 );
+			rect = graphics.getFontMetrics(font).getStringBounds(texto, graphics);  // Dimensiones del texto que se va a pintar
+		}
+		graphics.setColor( color );
+		graphics.setFont( font );
+		double xCalc = x + anchura/2.0 - rect.getWidth()/2.0;
+		double yCalc = y + altura - graphics.getFontMetrics(font).getDescent() - (altura - rect.getHeight())/2.0;
+		graphics.drawString( texto, (float)xCalc, (float)yCalc );
+		if (dibujadoInmediato) repaint();
+	}
 	
 	/** Devuelve el objeto de gráfico sobre el que pintar, correspondiente al 
 	 * panel principal de la ventana. Después de actualizar graphics hay que llamar a {@link #repaint()}
@@ -776,6 +806,8 @@ public class VentanaGrafica {
 		private static volatile HashMap<String,ImageIcon> recursosGraficos = new HashMap<>();
 		
 	/** Carga una imagen de un fichero gráfico y la dibuja en la ventana. Si la imagen no puede cargarse, no se dibuja nada.
+	 * El recurso gráfico se busca en el paquete de esta clase o en la clase llamadora.
+	 * El recurso gráfico se carga en memoria, de modo que al volver a dibujar la misma imagen, no se vuelve a cargar ya de fichero
 	 * @param recursoGrafico	Nombre del fichero (path absoluto desde la carpeta raíz de clases del proyecto)  (p. ej. "/img/prueba.png")
 	 * @param centroX	Coordenada x de la ventana donde colocar el centro de la imagen 
 	 * @param centroY	Coordenada y de la ventana donde colocar el centro de la imagen
@@ -787,15 +819,7 @@ public class VentanaGrafica {
 	 */
 	public void dibujaImagen( String recursoGrafico, double centroX, double centroY, 
 			int anchuraDibujo, int alturaDibujo, double zoom, double radsRotacion, float opacity ) {
-		ImageIcon ii = recursosGraficos.get( recursoGrafico );
-		if (ii==null) {
-			try {
-				ii = new ImageIcon( VentanaGrafica.class.getResource( recursoGrafico ));
-			} catch (NullPointerException e) {
-				return;
-			}
-			recursosGraficos.put( recursoGrafico, ii );
-		}
+		ImageIcon ii = getRecursoGrafico(recursoGrafico); if (ii==null) return;
 		graphics.setRenderingHint(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BILINEAR); // Configuración para mejor calidad del gráfico escalado
 		graphics.setRenderingHint(RenderingHints.KEY_RENDERING,RenderingHints.VALUE_RENDER_QUALITY);
 		graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);	
@@ -813,6 +837,8 @@ public class VentanaGrafica {
 	}
 
 	/** Carga una imagen de un fichero gráfico y la dibuja en la ventana. Si la imagen no puede cargarse, no se dibuja nada.
+	 * El recurso gráfico se busca en el paquete de esta clase o en la clase llamadora.
+	 * El recurso gráfico se carga en memoria, de modo que al volver a dibujar la misma imagen, no se vuelve a cargar ya de fichero
 	 * @param recursoGrafico	Nombre del fichero (path absoluto desde la carpeta raíz de clases del proyecto)  (p. ej. "/img/prueba.png")
 	 * @param centroX	Coordenada x de la ventana donde colocar el centro de la imagen 
 	 * @param centroY	Coordenada y de la ventana donde colocar el centro de la imagen
@@ -822,17 +848,39 @@ public class VentanaGrafica {
 	 */
 	public void dibujaImagen( String recursoGrafico, double centroX, double centroY, 
 			double zoom, double radsRotacion, float opacity ) {
-		ImageIcon ii = recursosGraficos.get( recursoGrafico );
-		if (ii==null) {
-			try {
-				ii = new ImageIcon( VentanaGrafica.class.getResource( recursoGrafico ));
-			} catch (NullPointerException e) {
-				return;
-			}
-			recursosGraficos.put( recursoGrafico, ii );
-		}
+		ImageIcon ii = getRecursoGrafico(recursoGrafico); if (ii==null) return;
 		dibujaImagen( recursoGrafico, centroX, centroY, ii.getIconWidth(), ii.getIconHeight(), zoom, radsRotacion, opacity);
 	}
+		// Intenta cargar el recurso gráfico del mapa interno, de la clase actual, o de la clase llamadora. Devuelve null si no se ha podido hacer
+		private ImageIcon getRecursoGrafico( String recursoGrafico ) {
+			ImageIcon ii = recursosGraficos.get( recursoGrafico );
+			if (ii==null) {
+				try {
+					ii = new ImageIcon( VentanaGrafica.class.getResource( recursoGrafico ));
+					recursosGraficos.put( recursoGrafico, ii );
+				} catch (NullPointerException e) {  // Mirar si está en la clase llamadora en lugar de en la ventana gráfica
+					StackTraceElement[] stElements = Thread.currentThread().getStackTrace();
+					for (int i=1; i<stElements.length; i++) {
+						StackTraceElement ste = stElements[i];
+						if ( !ste.getClassName().endsWith("VentanaGrafica") ) {  // Busca la clase llamadora a VentanaGrafica y busca ahí el recurso
+							try {
+								Class<?> c = Class.forName( ste.getClassName() );
+								URL url = c.getResource( recursoGrafico );
+								if (url==null) return null;
+								ii = new ImageIcon( url );
+								recursosGraficos.put( recursoGrafico, ii );
+								return ii;
+							} catch (ClassNotFoundException e1) {
+								return null;
+							}
+						}
+					}
+					return null;
+				}			
+			}
+			return ii;
+		}
+	
 	
 		private transient JPanel pBotonera = null;
 	/** Añade un botón de acción a la botonera superior
@@ -865,6 +913,20 @@ public class VentanaGrafica {
 	 */
 	public void removeComponentListener( ComponentListener l ) {
 		panel.removeComponentListener( l );
+	}
+	
+	/** Añade un escuchador de ventana a la ventana
+	 * @param l	Escuchador a añadir
+	 */
+	public void addWindowListener( WindowListener l ) {
+		ventana.addWindowListener( l );
+	}
+	
+	/** Elimina un escuchador de ventana de la ventana
+	 * @param l	Escuchador a eliminar
+	 */
+	public void removeWindowListener( WindowListener l ) {
+		ventana.removeWindowListener( l );
 	}
 
 		// Variable local para cuadro de texto
@@ -938,5 +1000,6 @@ public class VentanaGrafica {
 	public void sacaDialogo( String titulo, String mensaje ) {
 		JOptionPane.showMessageDialog( ventana, mensaje, titulo, JOptionPane.INFORMATION_MESSAGE );
 	}
+	
 	
 }

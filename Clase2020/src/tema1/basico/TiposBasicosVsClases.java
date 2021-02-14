@@ -31,7 +31,7 @@ public class TiposBasicosVsClases {
 	
 	private static void pasoFecha( Date miFecha ) {
 		System.out.println( miFecha );
-		miFecha = new Date();
+		// miFecha = new Date();  // Ver la diferencia si se descomenta esta línea
 		miFecha.setTime( System.currentTimeMillis() + 24*3600000L );
 	}
 	

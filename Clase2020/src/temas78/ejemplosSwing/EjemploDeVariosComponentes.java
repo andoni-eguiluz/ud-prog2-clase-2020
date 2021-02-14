@@ -80,7 +80,7 @@ public class EjemploDeVariosComponentes extends JFrame {
 		slValor = new JSlider( 0, 100 );  // Valores mínimo y máximo del slider
 		tfValor = new JTextField( "0", 5 );
 		spinValor = new JSpinner();
-		bProgresa = new JButton( "Progresa" );
+		bProgresa = new JButton( "Progreso" );
 		pbProgreso = new JProgressBar( 0, 100 );  // Valores mínimo y máximo de la progressbar
  		
 		// 3.- Formato y configuración
